@@ -1,0 +1,145 @@
+<!-- WHE Fest — Open Graph / Social Share Image Source
+     Export to JPEG (1200×630) for production use.
+     Tools: browser screenshot, Inkscape, Figma, or SVGOMG + ImageMagick.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#071422"/>
+      <stop offset="55%" stop-color="#0B1C2D"/>
+      <stop offset="100%" stop-color="#071422"/>
+    </linearGradient>
+
+    <!-- Gold shimmer for title -->
+    <linearGradient id="goldTitle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#A8893E"/>
+      <stop offset="35%"  stop-color="#C6A75E"/>
+      <stop offset="60%"  stop-color="#E8D5A0"/>
+      <stop offset="100%" stop-color="#C6A75E"/>
+    </linearGradient>
+
+    <!-- Radial glow behind logo -->
+    <radialGradient id="centerGlow" cx="50%" cy="48%" r="40%">
+      <stop offset="0%"   stop-color="#C6A75E" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#C6A75E" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Top edge gold glow -->
+    <linearGradient id="topGold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#C6A75E" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#C6A75E" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#C6A75E" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Divider gradient -->
+    <linearGradient id="divider" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%"   stop-color="#C6A75E" stop-opacity="0"/>
+      <stop offset="50%"  stop-color="#C6A75E"/>
+      <stop offset="100%" stop-color="#C6A75E" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Top gold accent line -->
+  <rect x="0" y="0" width="1200" height="2" fill="url(#topGold)" opacity="0.7"/>
+
+  <!-- Central radial glow -->
+  <ellipse cx="600" cy="305" rx="500" ry="280" fill="url(#centerGlow)"/>
+
+  <!-- Subtle corner accents -->
+  <line x1="32" y1="32" x2="90" y2="32" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="32" y1="32" x2="32" y2="90" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="1168" y1="32" x2="1110" y2="32" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="1168" y1="32" x2="1168" y2="90" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="32" y1="598" x2="90" y2="598" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="32" y1="598" x2="32" y2="540" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="1168" y1="598" x2="1110" y2="598" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+  <line x1="1168" y1="598" x2="1168" y2="540" stroke="#C6A75E" stroke-width="1" opacity="0.4"/>
+
+  <!-- Gold star particles (decorative) -->
+  <text x="120"  y="145" fill="#C6A75E" opacity="0.25" font-size="8">✦</text>
+  <text x="1058" y="200" fill="#C6A75E" opacity="0.2"  font-size="10">✦</text>
+  <text x="80"   y="430" fill="#C6A75E" opacity="0.15" font-size="6">✦</text>
+  <text x="1085" y="460" fill="#C6A75E" opacity="0.2"  font-size="7">✦</text>
+  <text x="240"  y="560" fill="#C6A75E" opacity="0.12" font-size="5">✦</text>
+  <text x="950"  y="120" fill="#C6A75E" opacity="0.15" font-size="6">✦</text>
+
+  <!-- Section label -->
+  <text
+    x="600" y="142"
+    fill="#C6A75E"
+    font-family="'Arial', sans-serif"
+    font-size="14"
+    font-weight="700"
+    letter-spacing="6"
+    text-anchor="middle"
+    text-transform="uppercase"
+    opacity="0.9">WOMEN HEALTH EMPOWERMENT</text>
+
+  <!-- WHE — main title -->
+  <text
+    x="600" y="260"
+    fill="url(#goldTitle)"
+    font-family="'Georgia', serif"
+    font-size="148"
+    font-weight="700"
+    letter-spacing="-2"
+    text-anchor="middle">WHE</text>
+
+  <!-- FEST — subtitle word -->
+  <text
+    x="600" y="340"
+    fill="#F8F6F2"
+    font-family="'Georgia', serif"
+    font-size="72"
+    font-style="italic"
+    font-weight="400"
+    letter-spacing="18"
+    text-anchor="middle"
+    opacity="0.92">FEST</text>
+
+  <!-- Gold divider -->
+  <rect x="350" y="368" width="500" height="1" fill="url(#divider)" opacity="0.7"/>
+
+  <!-- Five stars -->
+  <text x="490" y="406" fill="#C6A75E" font-size="16" text-anchor="middle" opacity="0.8">✦</text>
+  <text x="540" y="406" fill="#C6A75E" font-size="16" text-anchor="middle" opacity="0.8">✦</text>
+  <text x="600" y="410" fill="#C6A75E" font-size="22" text-anchor="middle">✦</text>
+  <text x="660" y="406" fill="#C6A75E" font-size="16" text-anchor="middle" opacity="0.8">✦</text>
+  <text x="710" y="406" fill="#C6A75E" font-size="16" text-anchor="middle" opacity="0.8">✦</text>
+
+  <!-- Event details -->
+  <text
+    x="600" y="456"
+    fill="#B8B2A8"
+    font-family="'Arial', sans-serif"
+    font-size="18"
+    font-weight="400"
+    letter-spacing="4"
+    text-anchor="middle">WASHINGTON, DC  ·  OCTOBER 15–16, 2026</text>
+
+  <!-- Bottom tagline -->
+  <text
+    x="600" y="510"
+    fill="#C6A75E"
+    font-family="'Georgia', serif"
+    font-style="italic"
+    font-size="20"
+    letter-spacing="1"
+    text-anchor="middle"
+    opacity="0.75">Health. Empowerment. Community. Action.</text>
+
+  <!-- Bottom URL bar -->
+  <rect x="0" y="578" width="1200" height="52" fill="#071422" opacity="0.85"/>
+  <rect x="0" y="578" width="1200" height="1" fill="url(#topGold)" opacity="0.4"/>
+  <text
+    x="600" y="611"
+    fill="#6B6560"
+    font-family="'Arial', sans-serif"
+    font-size="14"
+    letter-spacing="3"
+    text-anchor="middle">WHEFEST.ORG</text>
+</svg>

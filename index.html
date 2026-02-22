@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B1C2D" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <title>WHE Fest — Women Health Empowerment Festival | Washington, DC 2026</title>
+  <meta name="description" content="WHE Fest is the premier Women Health Empowerment Festival in Washington, DC. Join thousands of women leaders, health advocates, and changemakers." />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="WHE Fest 2026 — Women Health Empowerment Festival" />
+  <meta property="og:description" content="Washington, DC's premier women's health festival. 2,500+ women. 40+ speakers. Two days of health, policy, and empowerment." />
+  <meta property="og:url"         content="https://whefest.org/" />
+  <meta property="og:image"       content="https://whefest.org/assets/og-image.jpg" />
+  <meta property="og:site_name"   content="WHE Fest" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:site"       content="@whefest" />
+  <meta name="twitter:title"      content="WHE Fest 2026 — Women Health Empowerment Festival" />
+  <meta name="twitter:description" content="Washington, DC · 2026 · Where Women's Intuition Becomes Impact" />
+  <meta name="twitter:image"      content="https://whefest.org/assets/og-image.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://whefest.org/" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/design-system.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/home.css" />
+
+  <!-- Structured Data — Event Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "WHE Fest 2026 — Women Health Empowerment Festival",
+    "description": "Washington, DC's premier women's health festival. 2,500+ women leaders. 40+ speakers. Two days of health, policy, and empowerment.",
+    "startDate": "2026-10-15T09:00:00-04:00",
+    "endDate": "2026-10-16T18:00:00-04:00",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "Washington, DC",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Washington",
+        "addressRegion": "DC",
+        "addressCountry": "US"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "WHE Fest",
+      "url": "https://whefest.org"
+    },
+    "offers": {
+      "@type": "Offer",
+      "name": "General Admission — Early Bird",
+      "price": "149",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2026-01-01",
+      "url": "https://whefest.org/pages/tickets.html"
+    },
+    "image": "https://whefest.org/assets/og-image.jpg",
+    "url": "https://whefest.org"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ==============================
+       NAVIGATION
+  ================================= -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="WHE Fest Home">
+        WHE<span>Fest</span>
+      </a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="pages/speakers.html" class="nav__link">Speakers</a></li>
+        <li><a href="pages/schedule.html" class="nav__link">Schedule</a></li>
+        <li><a href="pages/location.html" class="nav__link">Location</a></li>
+        <li><a href="pages/sponsors.html" class="nav__link">Sponsors</a></li>
+        <li><a href="pages/tickets.html" class="btn btn--primary btn--sm">Get Tickets</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+  <!-- ==============================
+       HERO SECTION
+  ================================= -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero__bg"></div>
+    <canvas class="hero__canvas" id="heroCanvas" aria-hidden="true"></canvas>
+
+    <div class="hero__content">
+      <!-- Stars row -->
+      <div class="hero__stars" aria-hidden="true">
+        <svg viewBox="0 0 300 22" width="300" height="22" style="display:block;margin:0 auto;">
+          <defs>
+            <linearGradient id="sG" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#A8893E;stop-opacity:0.4"/>
+              <stop offset="50%" style="stop-color:#E8D5A0;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#A8893E;stop-opacity:0.4"/>
+            </linearGradient>
+          </defs>
+          <!-- 5 identical stars, centers at x=30,90,150,210,270 — 60px even spacing -->
+          <polygon points="30,1 32.2,7.9 39.5,7.9 33.6,12.2 35.9,19.1 30,14.8 24.1,19.1 26.4,12.2 20.5,7.9 27.8,7.9" fill="url(#sG)"/>
+          <polygon points="90,1 92.2,7.9 99.5,7.9 93.6,12.2 95.9,19.1 90,14.8 84.1,19.1 86.4,12.2 80.5,7.9 87.8,7.9" fill="url(#sG)"/>
+          <polygon points="150,1 152.2,7.9 159.5,7.9 153.6,12.2 155.9,19.1 150,14.8 144.1,19.1 146.4,12.2 140.5,7.9 147.8,7.9" fill="url(#sG)"/>
+          <polygon points="210,1 212.2,7.9 219.5,7.9 213.6,12.2 215.9,19.1 210,14.8 204.1,19.1 206.4,12.2 200.5,7.9 207.8,7.9" fill="url(#sG)"/>
+          <polygon points="270,1 272.2,7.9 279.5,7.9 273.6,12.2 275.9,19.1 270,14.8 264.1,19.1 266.4,12.2 260.5,7.9 267.8,7.9" fill="url(#sG)"/>
+        </svg>
+      </div>
+
+      <!-- Section label -->
+      <p class="hero__label section-label reveal">Washington, DC · 2026</p>
+
+      <!-- Main title -->
+      <h1 class="hero__title reveal reveal-delay-1">
+        <span class="hero__title-whe">WHE</span><span class="hero__title-fest">fest</span>
+      </h1>
+
+      <!-- Tagline -->
+      <p class="hero__tagline reveal reveal-delay-2">Women Health Empowerment</p>
+
+      <!-- Headline -->
+      <p class="hero__headline reveal reveal-delay-3">
+        Where Women's Intuition<br class="break-lg" /> Becomes Impact
+      </p>
+
+      <!-- Gold divider -->
+      <hr class="divider divider--wide divider-reveal reveal-delay-3 mx-auto" aria-hidden="true" />
+
+      <!-- CTAs -->
+      <div class="hero__ctas reveal reveal-delay-4">
+        <a href="pages/tickets.html" class="btn btn--glow">Get Tickets</a>
+        <a href="pages/speakers.html" class="btn btn--outline">View Speakers</a>
+      </div>
+
+      <!-- Countdown -->
+      <p class="section-label reveal reveal-delay-4" style="margin-top:2rem; margin-bottom:0.5rem;">Festival Begins In</p>
+      <div class="countdown reveal reveal-delay-4" id="heroCountdown" aria-label="Time until WHE Fest 2026"></div>
+
+      <!-- Scroll cue -->
+      <div class="hero__scroll-cue" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       ABOUT SECTION
+  ================================= -->
+  <section class="section section--gradient about" id="about">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__text">
+          <p class="section-label reveal">About the Festival</p>
+          <h2 class="reveal reveal-delay-1">A Movement.<br/> <span class="text-shimmer">A Gathering.</span><br/> A Turning Point.</h2>
+          <hr class="divider divider-reveal reveal-delay-1" aria-hidden="true" />
+          <p class="about__body reveal reveal-delay-2">
+            WHE Fest is the premier Women Health Empowerment Festival — a national gathering of women who are done waiting for permission and ready to lead. Held in the heart of Washington, DC, this multi-day event unites health advocates, policy leaders, community changemakers, and everyday women who believe their intuition is a superpower.
+          </p>
+          <p class="about__body reveal reveal-delay-3">
+            Connected with Moms Across America and aligned with the MAHA movement, WHE Fest is where wellness meets sovereignty — and where women come to be seen, strengthened, and sent back into the world changed.
+          </p>
+          <div class="about__badges reveal reveal-delay-4">
+            <span class="badge">Nonprofit Mission</span>
+            <span class="badge">Washington, DC</span>
+            <span class="badge">2-Day Event</span>
+          </div>
+        </div>
+        <div class="about__visual reveal reveal-delay-2">
+          <div class="about__stat-card">
+            <span class="about__stat-number">2,500+</span>
+            <span class="about__stat-label">Women Gathering</span>
+          </div>
+          <div class="about__stat-card">
+            <span class="about__stat-number">40+</span>
+            <span class="about__stat-label">Speakers &amp; Experts</span>
+          </div>
+          <div class="about__stat-card">
+            <span class="about__stat-number">3</span>
+            <span class="about__stat-label">Tracks &amp; Stages</span>
+          </div>
+          <div class="about__stat-card about__stat-card--gold">
+            <span class="about__stat-number">1</span>
+            <span class="about__stat-label">Unmissable Festival</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FEATURED SPEAKERS
+  ================================= -->
+  <section class="section section--dark speakers-preview" id="speakers">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <p class="section-label reveal">Featured Speakers</p>
+        <h2 class="reveal reveal-delay-1">Voices That <span class="text-shimmer">Ignite Change</span></h2>
+        <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
+      </div>
+
+      <div class="speakers-preview__grid">
+        <!-- Keynote Speaker -->
+        <div class="speaker-card speaker-card--keynote reveal">
+          <div class="speaker-card__badge">Keynote</div>
+          <div class="speaker-card__img speaker-card__img--placeholder">
+            <div class="speaker-card__initials">KN</div>
+          </div>
+          <div class="speaker-card__info">
+            <h3 class="speaker-card__name">Keynote Speaker</h3>
+            <p class="speaker-card__title">National Health Leader</p>
+            <p class="speaker-card__track">Opening Keynote · Day 1</p>
+          </div>
+        </div>
+
+        <!-- Speaker 2 -->
+        <div class="speaker-card reveal reveal-delay-1">
+          <div class="speaker-card__img speaker-card__img--placeholder">
+            <div class="speaker-card__initials">AW</div>
+          </div>
+          <div class="speaker-card__info">
+            <h3 class="speaker-card__name">Dr. Amanda Wells</h3>
+            <p class="speaker-card__title">Integrative Medicine Pioneer</p>
+            <p class="speaker-card__track">Health Track</p>
+          </div>
+        </div>
+
+        <!-- Speaker 3 -->
+        <div class="speaker-card reveal reveal-delay-2">
+          <div class="speaker-card__img speaker-card__img--placeholder">
+            <div class="speaker-card__initials">RC</div>
+          </div>
+          <div class="speaker-card__info">
+            <h3 class="speaker-card__name">Rep. Rachel Collins</h3>
+            <p class="speaker-card__title">Health Policy Champion</p>
+            <p class="speaker-card__track">Policy Track</p>
+          </div>
+        </div>
+
+        <!-- Speaker 4 -->
+        <div class="speaker-card reveal reveal-delay-3">
+          <div class="speaker-card__img speaker-card__img--placeholder">
+            <div class="speaker-card__initials">ML</div>
+          </div>
+          <div class="speaker-card__info">
+            <h3 class="speaker-card__name">Maria Lopez</h3>
+            <p class="speaker-card__title">Founder, Moms Health Network</p>
+            <p class="speaker-card__track">Empowerment Track</p>
+          </div>
+        </div>
+
+        <!-- Speaker 5 -->
+        <div class="speaker-card reveal reveal-delay-4">
+          <div class="speaker-card__img speaker-card__img--placeholder">
+            <div class="speaker-card__initials">SB</div>
+          </div>
+          <div class="speaker-card__info">
+            <h3 class="speaker-card__name">Dr. Sarah Brennan</h3>
+            <p class="speaker-card__title">Wellness &amp; Sovereignty Expert</p>
+            <p class="speaker-card__track">Health Track</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-xl reveal">
+        <a href="pages/speakers.html" class="btn btn--outline">View All Speakers</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       SCHEDULE HIGHLIGHTS
+  ================================= -->
+  <section class="section section--blue schedule-preview" id="schedule">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <p class="section-label reveal">Event Schedule</p>
+        <h2 class="reveal reveal-delay-1">Two Days of <span class="text-shimmer">Transformation</span></h2>
+        <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
+      </div>
+
+      <div class="schedule-preview__tabs reveal reveal-delay-2" role="tablist" aria-label="Festival schedule by day">
+        <button class="schedule-tab schedule-tab--active" data-day="1" role="tab" aria-selected="true" aria-controls="scheduleDay1" id="tab-day1">Day One</button>
+        <button class="schedule-tab" data-day="2" role="tab" aria-selected="false" aria-controls="scheduleDay2" id="tab-day2">Day Two</button>
+      </div>
+
+      <div class="schedule-preview__timeline" id="scheduleDay1" role="tabpanel" aria-labelledby="tab-day1">
+        <div class="timeline-item timeline-item--keynote reveal">
+          <div class="timeline-item__time">9:00 AM</div>
+          <div class="timeline-item__dot timeline-item__dot--gold"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Opening Keynote</span>
+            <h4 class="timeline-item__title">Women Who Lead: The Health Revolution Starts Here</h4>
+            <p class="timeline-item__meta">Main Stage · 90 min</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-item__time">11:00 AM</div>
+          <div class="timeline-item__dot"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Health Track</span>
+            <h4 class="timeline-item__title">Food as Medicine: Reclaiming the American Kitchen</h4>
+            <p class="timeline-item__meta">Health Stage · 60 min</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-item__time">1:00 PM</div>
+          <div class="timeline-item__dot"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Policy Track</span>
+            <h4 class="timeline-item__title">Advocating for Health Sovereignty in Washington</h4>
+            <p class="timeline-item__meta">Policy Stage · 60 min</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-3">
+          <div class="timeline-item__time">3:30 PM</div>
+          <div class="timeline-item__dot"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Empowerment</span>
+            <h4 class="timeline-item__title">Community Leadership Roundtable</h4>
+            <p class="timeline-item__meta">Empowerment Stage · 75 min</p>
+          </div>
+        </div>
+        <div class="timeline-item timeline-item--keynote reveal reveal-delay-4">
+          <div class="timeline-item__time">7:00 PM</div>
+          <div class="timeline-item__dot timeline-item__dot--gold"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Evening Event</span>
+            <h4 class="timeline-item__title">VIP Gala & Awards Dinner</h4>
+            <p class="timeline-item__meta">Grand Ballroom · Black Tie Optional</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-preview__timeline hidden" id="scheduleDay2" role="tabpanel" aria-labelledby="tab-day2">
+        <div class="timeline-item timeline-item--keynote reveal">
+          <div class="timeline-item__time">9:00 AM</div>
+          <div class="timeline-item__dot timeline-item__dot--gold"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Morning Keynote</span>
+            <h4 class="timeline-item__title">Courage in Action: Women Who Changed the System</h4>
+            <p class="timeline-item__meta">Main Stage · 90 min</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-item__time">11:00 AM</div>
+          <div class="timeline-item__dot"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Health Track</span>
+            <h4 class="timeline-item__title">Hormones, Toxins & the Modern Woman</h4>
+            <p class="timeline-item__meta">Health Stage · 60 min</p>
+          </div>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-item__time">1:00 PM</div>
+          <div class="timeline-item__dot"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Empowerment</span>
+            <h4 class="timeline-item__title">Building Movements: From Community to Capitol</h4>
+            <p class="timeline-item__meta">Empowerment Stage · 60 min</p>
+          </div>
+        </div>
+        <div class="timeline-item timeline-item--keynote reveal reveal-delay-3">
+          <div class="timeline-item__time">4:00 PM</div>
+          <div class="timeline-item__dot timeline-item__dot--gold"></div>
+          <div class="timeline-item__content">
+            <span class="timeline-item__tag">Closing Keynote</span>
+            <h4 class="timeline-item__title">The Future Is Healthy: A Call to Action</h4>
+            <p class="timeline-item__meta">Main Stage · 90 min</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-xl reveal">
+        <a href="pages/schedule.html" class="btn btn--outline">Full Schedule</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       TICKETS SNAPSHOT
+  ================================= -->
+  <section class="section section--gradient tickets-snapshot" id="tickets">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <p class="section-label reveal">Secure Your Seat</p>
+        <h2 class="reveal reveal-delay-1">Choose Your <span class="text-shimmer">Experience</span></h2>
+        <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
+      </div>
+
+      <div class="ticket-grid">
+        <div class="ticket-card reveal">
+          <p class="ticket-card__tier">General Admission</p>
+          <p class="ticket-card__price">$149</p>
+          <ul class="ticket-card__features">
+            <li>Full 2-day access</li>
+            <li>All general sessions</li>
+            <li>Festival marketplace</li>
+            <li>Community networking</li>
+          </ul>
+          <a href="pages/tickets.html" class="btn btn--outline btn--full">Register Now</a>
+        </div>
+
+        <div class="ticket-card ticket-card--featured reveal reveal-delay-1">
+          <div class="ticket-card__badge">Most Popular</div>
+          <p class="ticket-card__tier">VIP</p>
+          <p class="ticket-card__price">$349</p>
+          <ul class="ticket-card__features">
+            <li>Priority seating at all sessions</li>
+            <li>VIP Gala dinner access</li>
+            <li>Exclusive speaker meet &amp; greet</li>
+            <li>WHE Fest gift bag</li>
+            <li>Backstage lounge access</li>
+          </ul>
+          <a href="pages/tickets.html" class="btn btn--glow btn--full">Get VIP Access</a>
+        </div>
+
+        <div class="ticket-card reveal reveal-delay-2">
+          <p class="ticket-card__tier">Sponsor Table</p>
+          <p class="ticket-card__price">$1,500</p>
+          <ul class="ticket-card__features">
+            <li>Table of 8 at VIP Gala</li>
+            <li>Brand recognition at event</li>
+            <li>Full VIP benefits for group</li>
+            <li>Sponsorship packet included</li>
+          </ul>
+          <a href="pages/tickets.html" class="btn btn--outline btn--full">Inquire Now</a>
+        </div>
+      </div>
+
+      <p class="tickets-snapshot__note reveal text-center mt-lg">
+        Nonprofit &amp; community partner discounts available. <a href="pages/tickets.html">Learn more →</a>
+      </p>
+
+      <div class="tickets-snapshot__urgency reveal mt-lg">
+        <span class="urgency-pulse" aria-hidden="true"></span>
+        Limited Seating Available — Early Bird Pricing Ends Soon
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       LOCATION TEASER
+  ================================= -->
+  <section class="section section--dark location-teaser" id="location">
+    <div class="container">
+      <div class="location-teaser__inner">
+        <div class="location-teaser__text reveal">
+          <p class="section-label">Where We Gather</p>
+          <h2>Washington, <span class="text-shimmer">DC</span></h2>
+          <hr class="divider divider-reveal" aria-hidden="true"/>
+          <p class="location-teaser__body">
+            The heart of American power becomes the stage for women's health empowerment. WHE Fest is held in the nation's capital — where your voice is closest to the people who need to hear it most.
+          </p>
+          <ul class="location-teaser__details">
+            <li><span class="detail-icon">✦</span> Washington Convention Center</li>
+            <li><span class="detail-icon">✦</span> Metro-accessible &amp; walkable</li>
+            <li><span class="detail-icon">✦</span> Partner hotels secured</li>
+            <li><span class="detail-icon">✦</span> Shuttle service available</li>
+          </ul>
+          <a href="pages/location.html" class="btn btn--outline mt-lg">Plan Your Stay</a>
+        </div>
+        <div class="location-teaser__map reveal reveal-delay-2">
+          <div class="map-placeholder">
+            <div class="map-placeholder__inner">
+              <div class="map-marker" aria-hidden="true">
+                <svg viewBox="0 0 24 32" width="32" height="42">
+                  <path d="M12 0C5.4 0 0 5.4 0 12c0 7.5 12 20 12 20S24 19.5 24 12C24 5.4 18.6 0 12 0z" fill="#C6A75E"/>
+                  <circle cx="12" cy="12" r="5" fill="#0B1C2D"/>
+                </svg>
+              </div>
+              <p class="map-placeholder__label">Washington, DC</p>
+              <p class="map-placeholder__sublabel">Venue TBA · 2026</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       SPONSOR CAROUSEL
+  ================================= -->
+  <section class="section section--gradient sponsors-preview" id="sponsors">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <p class="section-label reveal">Our Partners</p>
+        <h2 class="reveal reveal-delay-1">Presenting <span class="text-shimmer">Sponsors</span></h2>
+        <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
+      </div>
+
+      <div class="sponsor-carousel reveal reveal-delay-2">
+        <div class="sponsor-carousel__track">
+          <!-- Placeholder logos — replace with actual -->
+          <div class="sponsor-logo-box"><span>Presenting Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Gold Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Gold Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Silver Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Silver Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Community Partner</span></div>
+          <!-- Duplicated for infinite scroll -->
+          <div class="sponsor-logo-box"><span>Presenting Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Gold Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Gold Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Silver Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Silver Sponsor</span></div>
+          <div class="sponsor-logo-box"><span>Community Partner</span></div>
+        </div>
+      </div>
+
+      <div class="text-center mt-xl reveal">
+        <a href="pages/sponsors.html" class="btn btn--outline">Become a Sponsor</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       EMAIL SIGNUP
+  ================================= -->
+  <section class="section section--dark email-signup" id="signup">
+    <div class="container container--narrow text-center">
+      <p class="section-label reveal">Stay Informed</p>
+      <h2 class="reveal reveal-delay-1">Be the First to <span class="text-shimmer">Know</span></h2>
+      <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
+      <p class="email-signup__body reveal reveal-delay-2">
+        Get early access to speakers, schedule drops, ticket sales, and exclusive community updates from WHE Fest.
+      </p>
+      <form class="email-signup__form reveal reveal-delay-3" action="#" method="post" novalidate>
+        <div class="email-signup__row">
+          <input class="input" type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email"/>
+          <button type="submit" class="btn btn--glow">Join the Movement</button>
+        </div>
+        <p class="email-signup__disclaimer">No spam. Ever. Unsubscribe anytime.</p>
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       FOOTER
+  ================================= -->
+  <!-- Scripts -->
+  </main>
+
+  <script src="js/hero-animation.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/components.js" defer></script>
+</body>
+</html>
