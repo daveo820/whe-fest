@@ -1,20 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="goldF" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#A8893E"/>
-      <stop offset="50%" style="stop-color:#E8D5A0"/>
-      <stop offset="100%" style="stop-color:#C6A75E"/>
-    </linearGradient>
-    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" style="stop-color:#132E47"/>
-      <stop offset="100%" style="stop-color:#0B1C2D"/>
-    </radialGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Rounded-square background — reads cleanly at 16×16 -->
+  <rect x="0" y="0" width="64" height="64" rx="14" ry="14" fill="#0B1C2D"/>
 
-  <!-- Background circle -->
-  <circle cx="32" cy="32" r="30" fill="url(#bgGlow)"/>
-  <circle cx="32" cy="32" r="30" fill="none" stroke="url(#goldF)" stroke-width="1.5"/>
-
-  <!-- W icon -->
-  <text x="32" y="44" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="700" fill="#FFFFFF">W</text>
+  <!-- Gold "W" drawn as a filled path — bold enough for tiny sizes -->
+  <path d="M 9,16 L 18,50 L 32,28 L 46,50 L 55,16 L 48,16 L 38,42 L 32,24 L 26,42 L 16,16 Z"
+        fill="#C6A75E"/>
 </svg>
