@@ -559,5 +559,18 @@ h6 { font-size: var(--text-lg); }
   /* Mobile nav panel handled by components.css (slide-in from right) */
   .nav__toggle {
     display: flex;
+    /* WCAG 2.5.5 — minimum 44×44px touch target */
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tighter container padding on phones gives more content width */
+  .container {
+    padding: 0 var(--space-md);
   }
 }

@@ -44,6 +44,14 @@
   margin-bottom: var(--space-lg);
   opacity: 0;
   animation: fadeInDown 1s ease 0.3s forwards;
+  /* Prevent SVG from overflowing narrow phones */
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.hero__stars svg {
+  max-width: 100%;
+  height: auto;
 }
 
 .hero__label {
@@ -329,6 +337,7 @@
 
 .schedule-tab {
   padding: 0.6em 2em;
+  min-height: 44px; /* WCAG touch target */
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
@@ -833,5 +842,37 @@
   .hero__ctas {
     flex-direction: column;
     align-items: center;
+  }
+
+  /* Reduce vertical whitespace in hero on phones */
+  .hero__content {
+    padding: var(--space-2xl) var(--space-md) var(--space-xl);
+  }
+
+  /* Tighten timeline columns to fit phone screens */
+  .schedule-preview__timeline::before {
+    left: 52px;
+  }
+  .timeline-item {
+    grid-template-columns: 52px 12px 1fr;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+  }
+  .timeline-item__time {
+    font-size: var(--text-xs);
+  }
+
+  /* Reduce hero tagline letter-spacing — 0.35em causes overflow on small phones */
+  .hero__tagline {
+    letter-spacing: 0.18em;
+  }
+
+  /* Schedule tabs fill width on small phones */
+  .schedule-preview__tabs {
+    gap: var(--space-sm);
+  }
+  .schedule-tab {
+    flex: 1;
+    padding: 0.6em 1em;
   }
 }

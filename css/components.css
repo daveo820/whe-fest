@@ -96,7 +96,13 @@
   cursor: pointer;
   font-size: 1rem;
   line-height: 1;
-  padding: 0.25rem;
+  /* 44×44px touch target */
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   transition: color var(--transition-fast);
 }
 
@@ -136,7 +142,7 @@ body.has-announcement-bar .nav {
 }
 
 .countdown__label {
-  font-size: 0.6rem;
+  font-size: clamp(0.65rem, 1.8vw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -373,8 +379,8 @@ body.has-announcement-bar .nav {
 }
 
 .site-footer__social-link {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--gold-20);
   border-radius: 50%;
   display: flex;
@@ -472,8 +478,8 @@ body.has-announcement-bar .nav {
   .announcement-bar {
     flex-wrap: wrap;
     text-align: center;
-    padding: 0.4rem var(--space-md);
-    font-size: 0.65rem;
+    padding: 0.5rem var(--space-md);
+    font-size: var(--text-xs); /* fluid, not hardcoded tiny */
   }
 
   .announcement-bar__dismiss {
@@ -484,5 +490,23 @@ body.has-announcement-bar .nav {
   .scroll-top {
     bottom: var(--space-lg);
     right: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tighter mobile nav panel on very small phones */
+  .nav__links {
+    padding: var(--space-2xl) var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  /* Countdown: tighter gap so it fits side-by-side on phones */
+  .countdown {
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .countdown__unit {
+    min-width: 52px;
   }
 }
