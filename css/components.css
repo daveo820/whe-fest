@@ -164,49 +164,6 @@ body.has-announcement-bar .nav {
   animation: sepBlink 1s step-end infinite;
 }
 
-/* ---------- Scroll-to-Top ---------- */
-.scroll-top {
-  position: fixed;
-  bottom: var(--space-lg);
-  right: var(--space-lg);
-  z-index: 900;
-  width: 44px;
-  height: 44px;
-  background: rgba(11, 28, 45, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--gold-20);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity var(--transition-base), transform var(--transition-base),
-              background var(--transition-base), border-color var(--transition-base);
-  pointer-events: none;
-  color: var(--deep-gold);
-}
-
-.scroll-top.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.scroll-top:hover {
-  background: var(--deep-gold);
-  border-color: var(--deep-gold);
-  color: var(--rich-black);
-  box-shadow: var(--shadow-gold);
-}
-
-/* SVG arrow — no more CSS border trick */
-.scroll-top svg {
-  display: block;
-  flex-shrink: 0;
-}
 
 /* ---------- Mobile Nav Overlay ---------- */
 .nav__overlay {
@@ -490,11 +447,6 @@ body.has-announcement-bar .nav {
   .announcement-bar__dismiss {
     position: static;
     margin-left: auto;
-  }
-
-  .scroll-top {
-    bottom: var(--space-lg);
-    right: var(--space-lg);
   }
 }
 

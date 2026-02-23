@@ -140,24 +140,6 @@
   }
 
 
-  // ── Scroll-to-Top Button ─────────────────────────────────
-  function injectScrollTop() {
-    const btn = document.createElement('button');
-    btn.className = 'scroll-top';
-    btn.setAttribute('aria-label', 'Scroll to top');
-    btn.innerHTML = '<span class="scroll-top__arrow" aria-hidden="true"></span>';
-    document.body.appendChild(btn);
-
-    window.addEventListener('scroll', () => {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-
   // ── Nav Overlay ──────────────────────────────────────────
   function injectNavOverlay() {
     const overlay = document.createElement('div');
@@ -303,7 +285,6 @@
     injectSkipLink();
     injectAnnouncementBar();
     injectFooter();
-    injectScrollTop();
     injectNavOverlay();
     setActiveNavLink();
     initPageTransitions();
