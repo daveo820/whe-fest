@@ -571,8 +571,12 @@
 }
 
 .transport-card__icon {
-  font-size: 2rem;
   margin-bottom: var(--space-md);
+  line-height: 1;
+}
+
+.transport-card__icon svg {
+  display: block;
 }
 
 .transport-card h3 {
