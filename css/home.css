@@ -163,15 +163,7 @@
 }
 
 .hero__scroll-cue {
-  position: absolute;
-  bottom: var(--space-xl);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  animation: fadeInUp 1s ease 2.2s both;
+  display: none;
 }
 
 .hero__scroll-cue span {
