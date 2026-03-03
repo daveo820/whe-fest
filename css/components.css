@@ -147,8 +147,10 @@ body.has-announcement-bar .nav {
 /* On dark hero/sections, countdown numbers should be white */
 .hero .countdown__number,
 .gala-hero .countdown__number,
+.page-hero .countdown__number,
 [style*="background:#071"] .countdown__number {
-  color: var(--soft-white);
+  color: var(--soft-white) !important;
+  text-shadow: 0 2px 20px rgba(198, 167, 94, 0.25);
 }
 
 .countdown__label {
