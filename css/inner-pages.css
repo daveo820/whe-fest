@@ -384,7 +384,7 @@
 .day-tab__label {
   font-family: var(--font-heading);
   font-size: var(--text-xl);
-  color: var(--soft-white);
+  color: var(--midnight-blue);
 }
 
 .day-tab--active .day-tab__label { color: var(--deep-gold); }
@@ -392,7 +392,7 @@
 .day-tab__date {
   font-size: var(--text-xs);
   letter-spacing: 0.1em;
-  color: var(--gray-muted);
+  color: var(--gray-warm);
   text-transform: uppercase;
 }
 
