@@ -389,7 +389,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   background: transparent;
-  color: var(--gray-warm);
+  color: var(--text-muted-on-light); /* was gray-warm (1.86:1 — WCAG fail) → now 7.5:1 */
   border: 1px solid var(--gold-20);
   border-radius: var(--border-radius);
   cursor: pointer;

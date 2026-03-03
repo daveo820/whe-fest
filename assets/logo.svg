@@ -1,42 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 500" width="700" height="500">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 720" width="700" height="720">
   <defs>
-    <linearGradient id="goldBold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#D4BA78"/>
-      <stop offset="35%" style="stop-color:#E8D5A0"/>
-      <stop offset="65%" style="stop-color:#C6A75E"/>
-      <stop offset="100%" style="stop-color:#A8893E"/>
+
+    <!-- Google Font for Fest script (works when SVG is inline in HTML) -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400&display=swap');
+    </style>
+
+    <!-- ===== GOLD ===== -->
+    <linearGradient id="goldH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#7A5C20"/>
+      <stop offset="22%"  stop-color="#C6A75E"/>
+      <stop offset="50%"  stop-color="#F0E0B0"/>
+      <stop offset="78%"  stop-color="#C6A75E"/>
+      <stop offset="100%" stop-color="#7A5C20"/>
     </linearGradient>
 
-    <linearGradient id="goldSweep" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#A8893E"/>
-      <stop offset="40%" style="stop-color:#E8D5A0"/>
-      <stop offset="60%" style="stop-color:#D4BA78"/>
-      <stop offset="100%" style="stop-color:#A8893E"/>
+    <linearGradient id="goldV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#F0E0B0"/>
+      <stop offset="50%"  stop-color="#C6A75E"/>
+      <stop offset="100%" stop-color="#8A6E2E"/>
     </linearGradient>
 
-    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#0D2240"/>
-      <stop offset="100%" style="stop-color:#071422"/>
+    <!-- ===== PEARLESCENT fill for WHE ===== -->
+    <!-- Base pearl: soft blue → lavender → white → ice → pale violet -->
+    <linearGradient id="pearl" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#C8DDFF"/>
+      <stop offset="20%"  stop-color="#EAE0FF"/>
+      <stop offset="45%"  stop-color="#FFFFFF"/>
+      <stop offset="65%"  stop-color="#C8E4FF"/>
+      <stop offset="85%"  stop-color="#E8D4FF"/>
+      <stop offset="100%" stop-color="#EEF4FF"/>
     </linearGradient>
 
-    <linearGradient id="starGold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#E8D5A0"/>
-      <stop offset="100%" style="stop-color:#C6A75E"/>
+    <!-- Shimmer overlay (diagonal highlight) -->
+    <linearGradient id="pearlShimmer" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="35%"  stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="55%"  stop-color="#C8DCFF" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
 
-    <filter id="powerGlow" x="-15%" y="-15%" width="130%" height="130%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
-      <feFlood flood-color="#FFFFFF" flood-opacity="0.25" result="glowColor"/>
-      <feComposite in="glowColor" in2="blur" operator="in" result="softGlow"/>
-      <feMerge>
-        <feMergeNode in="softGlow"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <!-- ===== SHIELD ===== -->
+    <linearGradient id="shieldBase" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#0F2545"/>
+      <stop offset="40%"  stop-color="#0B1C2D"/>
+      <stop offset="100%" stop-color="#060F1A"/>
+    </linearGradient>
 
-    <filter id="goldOuterGlow" x="-25%" y="-25%" width="150%" height="150%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
-      <feFlood flood-color="#C6A75E" flood-opacity="0.35" result="color"/>
+    <linearGradient id="starField" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#142F55"/>
+      <stop offset="100%" stop-color="#0E2340"/>
+    </linearGradient>
+
+    <!-- ===== AURA behind WHE ===== -->
+    <radialGradient id="pearlAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#C0C8FF" stop-opacity="0.32"/>
+      <stop offset="45%"  stop-color="#D8C8FF" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#FFFFFF"  stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ===== SPARKLE glow core ===== -->
+    <radialGradient id="sparkCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="40%"  stop-color="#E8DCFF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#C6A75E"  stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Shield clip -->
+    <clipPath id="shieldClip">
+      <path d="M 115,82 Q 350,114 585,82 L 585,405 Q 583,532 350,660 Q 117,532 115,405 Z"/>
+    </clipPath>
+
+    <!-- WHE letter clip (for stacking pearl gradient layers) -->
+    <clipPath id="wheClip">
+      <text x="350" y="418" text-anchor="middle"
+            font-family="Georgia, 'Palatino Linotype', Palatino, serif"
+            font-size="145" font-weight="700" letter-spacing="10">WHE</text>
+    </clipPath>
+
+    <!-- ===== FILTERS ===== -->
+
+    <!-- Pearl inner luminance -->
+    <filter id="pearlGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="blur"/>
+      <feFlood flood-color="#D0E8FF" flood-opacity="0.35" result="color"/>
       <feComposite in="color" in2="blur" operator="in" result="glow"/>
       <feMerge>
         <feMergeNode in="glow"/>
@@ -44,88 +91,166 @@
       </feMerge>
     </filter>
 
-    <radialGradient id="lightBurst" cx="50%" cy="40%" r="40%">
-      <stop offset="0%" style="stop-color:#FFFFFF; stop-opacity:0.12"/>
-      <stop offset="50%" style="stop-color:#C6A75E; stop-opacity:0.05"/>
-      <stop offset="100%" style="stop-color:#071422; stop-opacity:0"/>
-    </radialGradient>
+    <!-- Gold glow for Fest -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6" result="blur"/>
+      <feFlood flood-color="#C6A75E" flood-opacity="0.60" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
 
-    <radialGradient id="vig" cx="50%" cy="50%" r="55%">
-      <stop offset="0%" style="stop-color:#0B1C2D; stop-opacity:0"/>
-      <stop offset="100%" style="stop-color:#050D16; stop-opacity:0.85"/>
-    </radialGradient>
+    <!-- Border glow -->
+    <filter id="borderGlow" x="-15%" y="-8%" width="130%" height="116%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#C6A75E" flood-opacity="0.38" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Sparkle blur -->
+    <filter id="sparkBlur" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+
   </defs>
 
-  <!-- Background -->
-  <rect width="700" height="500" fill="url(#blueGrad)"/>
+  <!-- ======================================================= -->
+  <!--  SHIELD                                                   -->
+  <!-- ======================================================= -->
 
-  <!-- Light burst behind -->
-  <ellipse cx="350" cy="230" rx="300" ry="200" fill="url(#lightBurst)"/>
+  <!-- Gold aura behind shield -->
+  <path d="M 115,82 Q 350,114 585,82 L 585,405 Q 583,532 350,660 Q 117,532 115,405 Z"
+        fill="#C6A75E" opacity="0.07"
+        transform="scale(1.045) translate(-15.75,-15.75)"/>
 
-  <!-- Shield — outer -->
-  <path d="M350,52 L568,80 L568,290 Q568,388 350,448 Q132,388 132,290 L132,80 Z"
-        fill="none" stroke="url(#goldBold)" stroke-width="2" opacity="0.5"/>
-  <!-- Shield — inner -->
-  <path d="M350,64 L556,90 L556,286 Q556,378 350,436 Q144,378 144,286 L144,90 Z"
-        fill="none" stroke="url(#goldBold)" stroke-width="0.5" opacity="0.25"/>
+  <!-- Shield fill -->
+  <path d="M 115,82 Q 350,114 585,82 L 585,405 Q 583,532 350,660 Q 117,532 115,405 Z"
+        fill="url(#shieldBase)"/>
 
-  <!-- ===== FIVE STARS — precisely centered, evenly spaced ===== -->
-  <!-- Star helper: 5-point star centered at 0,0, radius ~14 -->
-  <!-- Positions: x = 350 ± 0, ±70, ±130   y = center at 95 -->
-  <g fill="url(#starGold)" opacity="0.85">
-    <!-- Star 1 — far left -->
-    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
-             transform="translate(220, 95) scale(0.7)"/>
-    <!-- Star 2 — left -->
-    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
-             transform="translate(285, 88) scale(0.85)"/>
-    <!-- Star 3 — center (largest) -->
-    <polygon points="0,-16 3.8,-5 15.2,-5 5.7,-2 9.4,13 0,6.2 -9.4,13 -5.7,-2 -15.2,-5 -3.8,-5"
-             transform="translate(350, 82)"/>
-    <!-- Star 4 — right -->
-    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
-             transform="translate(415, 88) scale(0.85)"/>
-    <!-- Star 5 — far right -->
-    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
-             transform="translate(480, 95) scale(0.7)"/>
+  <!-- Star-field top section -->
+  <rect x="0" y="0" width="700" height="276"
+        fill="url(#starField)" clip-path="url(#shieldClip)"/>
+
+  <!-- Subtle navy stripes (bottom section) -->
+  <g clip-path="url(#shieldClip)" opacity="0.24">
+    <rect x="130" y="276" width="44" height="390" fill="#152E50"/>
+    <rect x="220" y="276" width="44" height="390" fill="#152E50"/>
+    <rect x="310" y="276" width="44" height="390" fill="#152E50"/>
+    <rect x="400" y="276" width="44" height="390" fill="#152E50"/>
+    <rect x="490" y="276" width="44" height="390" fill="#152E50"/>
+    <rect x="580" y="276" width="44" height="390" fill="#152E50"/>
   </g>
 
-  <!-- ===== WHE — big, bold, centered ===== -->
-  <text x="350" y="248" text-anchor="middle"
-        font-family="'Impact', 'Arial Black', 'Helvetica Neue', sans-serif"
-        font-size="148" font-weight="900" letter-spacing="16"
-        fill="none" stroke="url(#goldBold)" stroke-width="3">WHE</text>
-  <text x="350" y="248" text-anchor="middle"
-        font-family="'Impact', 'Arial Black', 'Helvetica Neue', sans-serif"
-        font-size="148" font-weight="900" letter-spacing="16"
-        fill="#FFFFFF" filter="url(#powerGlow)">WHE</text>
+  <!-- Tone-on-tone stars (3-4-3 grid) -->
+  <g clip-path="url(#shieldClip)" fill="#FFFFFF" opacity="0.12">
+    <polygon points="0,-18 4.2,-5.8 17.1,-5.6 6.9,2.2 10.6,14.6 0,7.2 -10.6,14.6 -6.9,2.2 -17.1,-5.6 -4.2,-5.8" transform="translate(260,140)"/>
+    <polygon points="0,-18 4.2,-5.8 17.1,-5.6 6.9,2.2 10.6,14.6 0,7.2 -10.6,14.6 -6.9,2.2 -17.1,-5.6 -4.2,-5.8" transform="translate(350,126)"/>
+    <polygon points="0,-18 4.2,-5.8 17.1,-5.6 6.9,2.2 10.6,14.6 0,7.2 -10.6,14.6 -6.9,2.2 -17.1,-5.6 -4.2,-5.8" transform="translate(440,140)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(214,192)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(304,190)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(396,190)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(486,192)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(260,244)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(350,244)"/>
+    <polygon points="0,-15 3.5,-4.9 14.3,-4.6 5.7,1.9 8.8,12.1 0,6 -8.8,12.1 -5.7,1.9 -14.3,-4.6 -3.5,-4.9" transform="translate(440,244)"/>
+  </g>
 
-  <!-- ===== FEST — gold, bold, tracked ===== -->
-  <text x="350" y="320" text-anchor="middle"
-        font-family="'Impact', 'Arial Black', 'Helvetica Neue', sans-serif"
-        font-size="68" font-weight="900" letter-spacing="26"
-        fill="url(#goldSweep)" filter="url(#goldOuterGlow)">FEST</text>
+  <!-- Gold section divider -->
+  <path d="M 128,276 Q 350,258 572,276"
+        fill="none" stroke="url(#goldH)" stroke-width="1.5" opacity="0.60"/>
 
-  <!-- Gold dividers -->
-  <line x1="185" y1="342" x2="515" y2="342" stroke="url(#goldSweep)" stroke-width="1.5" opacity="0.7"/>
-  <line x1="210" y1="349" x2="490" y2="349" stroke="url(#goldSweep)" stroke-width="0.5" opacity="0.3"/>
+  <!-- ======================================================= -->
+  <!--  GOLD BORDER                                             -->
+  <!-- ======================================================= -->
+  <path d="M 115,82 Q 350,114 585,82 L 585,405 Q 583,532 350,660 Q 117,532 115,405 Z"
+        fill="none" stroke="url(#goldH)" stroke-width="9" filter="url(#borderGlow)"/>
+  <path d="M 124,90 Q 350,122 576,90 L 576,402 Q 574,522 350,646 Q 126,522 124,402 Z"
+        fill="none" stroke="url(#goldH)" stroke-width="1.5" opacity="0.28"/>
+  <path d="M 115,82 Q 350,114 585,82 L 576,90 Q 350,122 124,90 Z"
+        fill="url(#goldH)" opacity="0.52"/>
 
-  <!-- WOMEN HEALTH EMPOWERMENT -->
-  <text x="350" y="378" text-anchor="middle"
+  <!-- ======================================================= -->
+  <!--  PEARL AURA behind WHE text                              -->
+  <!-- ======================================================= -->
+  <ellipse cx="350" cy="378" rx="215" ry="75"
+           fill="url(#pearlAura)" clip-path="url(#shieldClip)"/>
+
+  <!-- ======================================================= -->
+  <!--  WHE — pearlescent letters with gold border              -->
+  <!-- ======================================================= -->
+
+  <!-- Pearl base fill (clipped to letter shapes) -->
+  <rect x="100" y="272" width="500" height="170"
+        fill="url(#pearl)" clip-path="url(#wheClip)"/>
+
+  <!-- Pearl shimmer overlay -->
+  <rect x="100" y="272" width="500" height="170"
+        fill="url(#pearlShimmer)" clip-path="url(#wheClip)" opacity="0.65"/>
+
+  <!-- Pearl inner glow pass (soft luminance) -->
+  <text x="350" y="418" text-anchor="middle"
+        font-family="Georgia, 'Palatino Linotype', Palatino, serif"
+        font-size="145" font-weight="700" letter-spacing="10"
+        fill="url(#pearl)" filter="url(#pearlGlow)" opacity="0.5">WHE</text>
+
+  <!-- Gold metallic border on WHE letters -->
+  <text x="350" y="418" text-anchor="middle"
+        font-family="Georgia, 'Palatino Linotype', Palatino, serif"
+        font-size="145" font-weight="700" letter-spacing="10"
+        fill="none" stroke="url(#goldH)" stroke-width="2.5" stroke-linejoin="round">WHE</text>
+
+  <!-- ======================================================= -->
+  <!--  SPARKLES                                                -->
+  <!-- ======================================================= -->
+
+  <!-- Left sparkle (near W) -->
+  <g transform="translate(148, 355)">
+    <circle r="14" fill="url(#sparkCore)" filter="url(#sparkBlur)"/>
+    <line x1="-42" y1="0"  x2="42"  y2="0"  stroke="#FFFFFF" stroke-width="0.7" opacity="0.80"/>
+    <line x1="0"  y1="-42" x2="0"   y2="42" stroke="#FFFFFF" stroke-width="0.7" opacity="0.80"/>
+    <line x1="-22" y1="-22" x2="22" y2="22" stroke="#F0E0B0" stroke-width="0.35" opacity="0.50"/>
+    <line x1="22" y1="-22" x2="-22" y2="22" stroke="#F0E0B0" stroke-width="0.35" opacity="0.50"/>
+    <circle r="2.5" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Right sparkle (near Fest) -->
+  <g transform="translate(543, 455)">
+    <circle r="10" fill="url(#sparkCore)" filter="url(#sparkBlur)"/>
+    <line x1="-32" y1="0"  x2="32"  y2="0"  stroke="#FFFFFF" stroke-width="0.6" opacity="0.75"/>
+    <line x1="0"  y1="-32" x2="0"   y2="32" stroke="#FFFFFF" stroke-width="0.6" opacity="0.75"/>
+    <line x1="-16" y1="-16" x2="16" y2="16" stroke="#F0E0B0" stroke-width="0.3" opacity="0.45"/>
+    <line x1="16" y1="-16" x2="-16" y2="16" stroke="#F0E0B0" stroke-width="0.3" opacity="0.45"/>
+    <circle r="2" fill="#FFFFFF"/>
+  </g>
+
+  <!-- ======================================================= -->
+  <!--  Fest — elegant gold script                              -->
+  <!-- ======================================================= -->
+  <text x="350" y="483" text-anchor="middle"
+        font-family="'Cormorant Garamond', Georgia, 'Palatino Linotype', Palatino, serif"
+        font-size="58" font-weight="400" font-style="italic" letter-spacing="8"
+        fill="url(#goldV)" filter="url(#goldGlow)">Fest</text>
+
+  <!-- ======================================================= -->
+  <!--  SUBTEXT                                                 -->
+  <!-- ======================================================= -->
+  <line x1="192" y1="506" x2="508" y2="506"
+        stroke="url(#goldH)" stroke-width="1" opacity="0.52"/>
+
+  <text x="350" y="525" text-anchor="middle"
         font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="15" font-weight="700" letter-spacing="7"
-        fill="#C6A75E" opacity="0.95">WOMEN HEALTH EMPOWERMENT</text>
+        font-size="10" font-weight="600" letter-spacing="2.5"
+        fill="#C6A75E" opacity="0.90">WOMEN HEALTH EMPOWERMENT</text>
 
-  <!-- WASHINGTON, DC · 2026 -->
-  <text x="350" y="406" text-anchor="middle"
+  <text x="350" y="546" text-anchor="middle"
         font-family="'Helvetica Neue', Arial, sans-serif"
-        font-size="10.5" font-weight="400" letter-spacing="5"
-        fill="#F8F6F2" opacity="0.5">WASHINGTON, DC  ·  2026</text>
+        font-size="8.5" font-weight="400" letter-spacing="3"
+        fill="#F8F6F2" opacity="0.40">WASHINGTON, DC  ·  2026</text>
 
-  <!-- Bottom accent star -->
-  <polygon points="0,-10 2.4,-3.1 9.5,-3.1 3.6,-1.2 5.9,8 0,3.8 -5.9,8 -3.6,-1.2 -9.5,-3.1 -2.4,-3.1"
-           transform="translate(350, 428)" fill="url(#starGold)" opacity="0.45"/>
-
-  <!-- Vignette -->
-  <rect width="700" height="500" fill="url(#vig)"/>
 </svg>

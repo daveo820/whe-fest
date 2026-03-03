@@ -15,6 +15,9 @@
 .hotel-card__address { color: var(--text-muted-on-light) !important; }
 .hotel-card__features li { color: var(--text-muted-on-light) !important; }
 
+/* location-features is used on both location page and tickets page — force readable text on light sections */
+.location-features li { color: var(--text-on-light) !important; }
+
 .transport-card {
   background: white !important;
   border-color: var(--border-on-light) !important;
@@ -277,6 +280,25 @@
 .track-tag--policy   { background: rgba(33,150,243,0.12); color: #64B5F6; }
 .track-tag--empowerment { background: rgba(156,39,176,0.12); color: #CE93D8; }
 .track-tag--nonprofit   { background: rgba(255,152,0,0.12); color: #FFCC80; }
+
+/* Light-section track tags: darken text to meet WCAG AA (4.5:1 minimum).
+   The original light colors work on dark gala/hero backgrounds;
+   section--dark/blue/gradient are all light-cream in the current design. */
+.section--gradient .track-tag--health,
+.section--blue .track-tag--health,
+.section--dark .track-tag--health { color: #2E7D32 !important; }
+
+.section--gradient .track-tag--policy,
+.section--blue .track-tag--policy,
+.section--dark .track-tag--policy { color: #0D47A1 !important; }
+
+.section--gradient .track-tag--empowerment,
+.section--blue .track-tag--empowerment,
+.section--dark .track-tag--empowerment { color: #6A1B9A !important; }
+
+.section--gradient .track-tag--nonprofit,
+.section--blue .track-tag--nonprofit,
+.section--dark .track-tag--nonprofit { color: #BF360C !important; }
 
 /* ---------- Speaker Full Cards (Speakers page) ---------- */
 .speakers-grid {

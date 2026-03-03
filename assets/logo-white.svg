@@ -1,21 +1,92 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" width="400" height="200">
-  <defs>
-    <linearGradient id="goldGradBW" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#A8893E"/>
-      <stop offset="50%" style="stop-color:#E8D5A0"/>
-      <stop offset="100%" style="stop-color:#A8893E"/>
-    </linearGradient>
-  </defs>
+<!-- WHE Fest — Monochrome / Light Background Version
+     Navy on white. No gradients, no glow. Print-safe.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 560" width="500" height="560">
 
-  <!-- WHE -->
-  <text x="200" y="90" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="72" font-weight="700" letter-spacing="8" fill="#FFFFFF">WHE</text>
+  <!-- Shield outline (navy fill + dark border, no color gradients) -->
+  <path d="M 82,60 Q 250,82 418,60 L 418,290 Q 416,380 250,470 Q 84,380 82,290 Z"
+        fill="#0B1C2D"/>
 
-  <!-- Fest -->
-  <text x="200" y="132" text-anchor="middle" font-family="Georgia, 'Cormorant Garamond', serif" font-size="36" font-weight="300" font-style="italic" letter-spacing="4" fill="url(#goldGradBW)">Fest</text>
+  <!-- Star-field top section (slightly lighter navy) -->
+  <clipPath id="bwClip">
+    <path d="M 82,60 Q 250,82 418,60 L 418,290 Q 416,380 250,470 Q 84,380 82,290 Z"/>
+  </clipPath>
+  <rect x="0" y="0" width="500" height="198"
+        fill="#102438" clip-path="url(#bwClip)"/>
 
-  <!-- Separator -->
-  <line x1="120" y1="148" x2="280" y2="148" stroke="url(#goldGradBW)" stroke-width="0.5" opacity="0.5"/>
+  <!-- Tone-on-tone stripes (very subtle, monochrome safe) -->
+  <g clip-path="url(#bwClip)" opacity="0.20">
+    <rect x="88"  y="198" width="32" height="276" fill="#1A3A5E"/>
+    <rect x="154" y="198" width="32" height="276" fill="#1A3A5E"/>
+    <rect x="220" y="198" width="32" height="276" fill="#1A3A5E"/>
+    <rect x="286" y="198" width="32" height="276" fill="#1A3A5E"/>
+    <rect x="352" y="198" width="32" height="276" fill="#1A3A5E"/>
+    <rect x="418" y="198" width="32" height="276" fill="#1A3A5E"/>
+  </g>
+
+  <!-- Stars (white at 16% — just visible against lighter star-field) -->
+  <g clip-path="url(#bwClip)" fill="#FFFFFF" opacity="0.16">
+    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
+             transform="translate(186,104)"/>
+    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
+             transform="translate(250,92)"/>
+    <polygon points="0,-14 3.3,-4.3 13.3,-4.3 5,-1.7 8.2,11.3 0,5.4 -8.2,11.3 -5,-1.7 -13.3,-4.3 -3.3,-4.3"
+             transform="translate(314,104)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(154,148)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(218,146)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(282,146)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(346,148)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(186,188)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(250,188)"/>
+    <polygon points="0,-12 2.9,-3.7 11.4,-3.7 4.3,-1.4 7.1,9.7 0,4.6 -7.1,9.7 -4.3,-1.4 -11.4,-3.7 -2.9,-3.7"
+             transform="translate(314,188)"/>
+  </g>
+
+  <!-- Divider between star-field and stripe section -->
+  <path d="M 88,198 Q 250,186 412,198"
+        fill="none" stroke="#C6A75E" stroke-width="1.2" opacity="0.50"/>
+
+  <!-- Shield border — navy stroke (no gradient needed on white bg) -->
+  <path d="M 82,60 Q 250,82 418,60 L 418,290 Q 416,380 250,470 Q 84,380 82,290 Z"
+        fill="none" stroke="#0B1C2D" stroke-width="3"/>
+
+  <!-- Gold border accent (thin, for version that prints in color) -->
+  <path d="M 82,60 Q 250,82 418,60 L 418,290 Q 416,380 250,470 Q 84,380 82,290 Z"
+        fill="none" stroke="#C6A75E" stroke-width="1.5" opacity="0.70"/>
+
+  <!-- Top bevel highlight -->
+  <path d="M 82,60 Q 250,82 418,60 L 415,65 Q 250,87 85,65 Z"
+        fill="#C6A75E" opacity="0.40"/>
+
+  <!-- WHE — white text on navy background -->
+  <text x="250" y="308" text-anchor="middle"
+        font-family="Georgia, 'Palatino Linotype', Palatino, serif"
+        font-size="112" font-weight="700" letter-spacing="8"
+        fill="#F8F6F2">WHE</text>
+
+  <!-- Fest — gold (renders on navy bg) -->
+  <text x="250" y="360" text-anchor="middle"
+        font-family="Georgia, 'Palatino Linotype', Palatino, serif"
+        font-size="40" font-weight="400" font-style="italic" letter-spacing="8"
+        fill="#C6A75E">Fest</text>
+
+  <!-- Thin divider -->
+  <line x1="140" y1="378" x2="360" y2="378"
+        stroke="#C6A75E" stroke-width="0.8" opacity="0.50"/>
 
   <!-- Subtext -->
-  <text x="200" y="170" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="8" letter-spacing="3" fill="#FFFFFF" opacity="0.6">WOMEN HEALTH EMPOWERMENT</text>
+  <text x="250" y="396" text-anchor="middle"
+        font-family="'Helvetica Neue', Arial, sans-serif"
+        font-size="8" font-weight="600" letter-spacing="2"
+        fill="#C6A75E" opacity="0.85">WOMEN HEALTH EMPOWERMENT</text>
+
+  <!-- For true B&W print: override above with black text -->
+  <!-- Monochrome safe note: substitute #C6A75E → #0B1C2D, #F8F6F2 → #FFFFFF -->
+
 </svg>
