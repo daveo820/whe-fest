@@ -274,9 +274,18 @@ h6 { font-size: var(--text-lg); }
 
 .btn--outline:hover {
   background: var(--deep-gold);
-  color: var(--rich-black);
+  color: var(--rich-black) !important;
   box-shadow: var(--shadow-glow);
   transform: translateY(-2px);
+}
+
+/* btn--outline on dark backgrounds (hero, page-hero, gala) */
+.hero .btn--outline,
+.page-hero .btn--outline,
+.gala-hero .btn--outline,
+.gala-section .btn--outline {
+  color: var(--soft-white) !important;
+  border-color: rgba(198, 167, 94, 0.7);
 }
 
 .btn--glow {
