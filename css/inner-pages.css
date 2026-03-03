@@ -72,8 +72,15 @@
 
 .urgency-bar { color: var(--gold-dark) !important; }
 
-/* Page hero text for light theme */
-.page-hero__sub { color: var(--text-muted-on-light); }
+/* Page hero always has dark bg — keep text light */
+.page-hero h1,
+.page-hero h2 {
+  color: var(--soft-white) !important;
+}
+.page-hero .section-label {
+  color: var(--deep-gold) !important;
+}
+.page-hero__sub { color: var(--gray-warm) !important; }
 
 /* Schedule page */
 .fti__title { color: var(--text-on-light) !important; }
