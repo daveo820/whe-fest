@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B1C2D" />
-  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/favicon.svg?v=2" />
   <title>WHE Fest — Women Health Empowerment Festival | Washington, DC 2026</title>
   <meta name="description" content="WHE Fest is the premier Women Health Empowerment Festival in Washington, DC. Join thousands of women leaders, health advocates, and changemakers." />
 
@@ -29,9 +29,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Favicon -->
+  <!-- Favicon — SVG first so modern browsers use the shield -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg?v=2" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/design-system.css" />
@@ -86,13 +86,14 @@
   <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="WHE Fest Home">
-        WHE<span>Fest</span>
+        <img src="assets/logo-main.png" alt="WHE Fest" class="nav__logo-img" />
       </a>
 
       <ul class="nav__links" id="navLinks">
         <li><a href="pages/speakers.html" class="nav__link">Speakers</a></li>
         <li><a href="pages/schedule.html" class="nav__link">Schedule</a></li>
         <li><a href="pages/location.html" class="nav__link">Location</a></li>
+        <li><a href="pages/gala.html" class="nav__link">Gala</a></li>
         <li><a href="pages/sponsors.html" class="nav__link">Sponsors</a></li>
         <li><a href="pages/tickets.html" class="btn btn--primary btn--sm">Get Tickets</a></li>
       </ul>
@@ -138,16 +139,16 @@
       <p class="hero__label section-label reveal">Washington, DC · 2026</p>
 
       <!-- Main title -->
-      <h1 class="hero__title reveal reveal-delay-1">
-        <span class="hero__title-whe">WHE</span><span class="hero__title-fest">fest</span>
-      </h1>
+      <div class="hero__title reveal reveal-delay-1">
+        <img src="assets/logo-main.png" alt="WHE Fest" class="hero__logo-img" />
+      </div>
 
       <!-- Tagline -->
-      <p class="hero__tagline reveal reveal-delay-2">Women Health Empowerment</p>
+      <p class="hero__tagline reveal reveal-delay-2">Women &bull; Health &bull; Empower</p>
 
       <!-- Headline -->
       <p class="hero__headline reveal reveal-delay-3">
-        Where Women's Intuition<br class="break-lg" /> Becomes Impact
+        We don't need the WHO &mdash;<br class="break-lg" /> we are the WHE.
       </p>
 
       <!-- Gold divider -->
@@ -155,8 +156,8 @@
 
       <!-- CTAs -->
       <div class="hero__ctas reveal reveal-delay-4">
-        <a href="pages/tickets.html" class="btn btn--glow">Get Tickets</a>
-        <a href="pages/speakers.html" class="btn btn--outline">View Speakers</a>
+        <a href="#about" class="btn btn--glow">Our Mission</a>
+        <a href="#signup" class="btn btn--outline">Get Involved</a>
       </div>
 
       <!-- Countdown -->
@@ -181,18 +182,25 @@
       <div class="about__inner">
         <div class="about__text">
           <p class="section-label reveal">About the Festival</p>
-          <h2 class="reveal reveal-delay-1">A Movement.<br/> <span class="text-shimmer">A Gathering.</span><br/> A Turning Point.</h2>
+          <h2 class="reveal reveal-delay-1">A Historic<br/> <span class="text-shimmer">Gathering.</span><br/> A Turning Point.</h2>
           <hr class="divider divider-reveal reveal-delay-1" aria-hidden="true" />
           <p class="about__body reveal reveal-delay-2">
-            WHE Fest is the premier Women Health Empowerment Festival — a national gathering of women who are done waiting for permission and ready to lead. Held in the heart of Washington, DC, this multi-day event unites health advocates, policy leaders, community changemakers, and everyday women who believe their intuition is a superpower.
+            You are invited to a historic gathering of inspiring and powerful women shaping the future of America. Held strategically in Washington, D.C., six weeks before the midterm elections, WHE Fest is a festival-style health and activism conference led by pioneering female experts.
           </p>
           <p class="about__body reveal reveal-delay-3">
-            Connected with Moms Across America and aligned with the MAHA movement, WHE Fest is where wellness meets sovereignty — and where women come to be seen, strengthened, and sent back into the world changed.
+            This three-day event is designed to empower mothers and women to reclaim the health of their families, communities, and nation. In collaboration with leading health advocacy organizations, WHE Fest brings together experts offering the best of their knowledge in holistic wellness, civic engagement, and community leadership.
           </p>
+          <p class="about__body reveal reveal-delay-3">
+            Join us in learning holistic self-care, family health strategies, and community empowerment — all while celebrating together. Enjoy yoga sessions, curated workshops, cocktails, and a Saturday evening Gala featuring dancing and organic cuisine. Women are leading the way in building healthy communities and a healthy America. Join us.
+          </p>
+          <div class="about__cta-note reveal reveal-delay-4">
+            <p>Contact us to express interest in <strong>volunteering</strong>, <strong>sponsoring</strong>, or <strong>speaking</strong>. More details coming soon.</p>
+            <a href="#signup" class="btn btn--outline mt-md">Express Your Interest</a>
+          </div>
           <div class="about__badges reveal reveal-delay-4">
             <span class="badge">Nonprofit Mission</span>
-            <span class="badge">Washington, DC</span>
-            <span class="badge">2-Day Event</span>
+            <span class="badge">Washington, D.C.</span>
+            <span class="badge">3-Day Festival</span>
           </div>
         </div>
         <div class="about__visual reveal reveal-delay-2">
@@ -206,11 +214,11 @@
           </div>
           <div class="about__stat-card">
             <span class="about__stat-number">3</span>
-            <span class="about__stat-label">Tracks &amp; Stages</span>
+            <span class="about__stat-label">Days of Empowerment</span>
           </div>
           <div class="about__stat-card about__stat-card--gold">
             <span class="about__stat-number">1</span>
-            <span class="about__stat-label">Unmissable Festival</span>
+            <span class="about__stat-label">Saturday Evening Gala</span>
           </div>
         </div>
       </div>
@@ -306,7 +314,7 @@
     <div class="container">
       <div class="text-center mb-xl">
         <p class="section-label reveal">Event Schedule</p>
-        <h2 class="reveal reveal-delay-1">Two Days of <span class="text-shimmer">Transformation</span></h2>
+        <h2 class="reveal reveal-delay-1">Three Days of <span class="text-shimmer">Transformation</span></h2>
         <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
       </div>
 
@@ -480,30 +488,122 @@
       <div class="location-teaser__inner">
         <div class="location-teaser__text reveal">
           <p class="section-label">Where We Gather</p>
-          <h2>Washington, <span class="text-shimmer">DC</span></h2>
+          <h2>Gaylord National <span class="text-shimmer">Resort &amp; Convention Center</span></h2>
           <hr class="divider divider-reveal" aria-hidden="true"/>
           <p class="location-teaser__body">
-            The heart of American power becomes the stage for women's health empowerment. WHE Fest is held in the nation's capital — where your voice is closest to the people who need to hear it most.
+            WHE Fest is hosted at one of the most spectacular waterfront venues on the East Coast — the magnificent Gaylord National Resort &amp; Convention Center overlooking the Potomac River, just minutes from Washington, D.C.
           </p>
           <ul class="location-teaser__details">
-            <li><span class="detail-icon">✦</span> Washington Convention Center</li>
-            <li><span class="detail-icon">✦</span> Metro-accessible &amp; walkable</li>
-            <li><span class="detail-icon">✦</span> Partner hotels secured</li>
-            <li><span class="detail-icon">✦</span> Shuttle service available</li>
+            <li><span class="detail-icon">✦</span> Potomac River waterfront, National Harbor</li>
+            <li><span class="detail-icon">✦</span> World-class resort hotel on-site</li>
+            <li><span class="detail-icon">✦</span> Minutes from Washington, D.C.</li>
+            <li><span class="detail-icon">✦</span> Spectacular convention facilities</li>
           </ul>
-          <a href="pages/location.html" class="btn btn--outline mt-lg">Plan Your Stay</a>
+          <div class="flex flex-gap mt-lg" style="flex-wrap:wrap;">
+            <a href="pages/location.html" class="btn btn--glow">Plan Your Stay</a>
+            <a href="https://www.marriott.com/en-us/hotels/wasgn-gaylord-national-resort-and-convention-center/overview/" target="_blank" rel="noopener" class="btn btn--outline">Book Your Room</a>
+          </div>
         </div>
         <div class="location-teaser__map reveal reveal-delay-2">
-          <div class="map-placeholder">
-            <div class="map-placeholder__inner">
-              <div class="map-marker" aria-hidden="true">
-                <svg viewBox="0 0 24 32" width="32" height="42">
-                  <path d="M12 0C5.4 0 0 5.4 0 12c0 7.5 12 20 12 20S24 19.5 24 12C24 5.4 18.6 0 12 0z" fill="#C6A75E"/>
-                  <circle cx="12" cy="12" r="5" fill="#0B1C2D"/>
+          <div class="venue-showcase">
+            <div class="venue-showcase__image-stack">
+              <div class="venue-showcase__badge">Official Venue</div>
+              <div class="venue-showcase__img-frame">
+                <svg viewBox="0 0 560 360" width="100%" style="display:block;" aria-hidden="true">
+                  <!-- Architectural illustration of Gaylord National -->
+                  <defs>
+                    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color:#071422"/>
+                      <stop offset="100%" style="stop-color:#132E47"/>
+                    </linearGradient>
+                    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color:#0D2A42"/>
+                      <stop offset="100%" style="stop-color:#071422"/>
+                    </linearGradient>
+                    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" style="stop-color:rgba(180,220,255,0.25)"/>
+                      <stop offset="100%" style="stop-color:rgba(100,160,220,0.08)"/>
+                    </linearGradient>
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style="stop-color:#A8893E"/>
+                      <stop offset="50%" style="stop-color:#E8D5A0"/>
+                      <stop offset="100%" style="stop-color:#A8893E"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Sky -->
+                  <rect width="560" height="280" fill="url(#skyGrad)"/>
+                  <!-- Stars -->
+                  <circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.5)"/>
+                  <circle cx="160" cy="20" r="1.2" fill="rgba(255,255,255,0.4)"/>
+                  <circle cx="300" cy="15" r="1" fill="rgba(255,255,255,0.6)"/>
+                  <circle cx="420" cy="25" r="1.5" fill="rgba(255,255,255,0.3)"/>
+                  <circle cx="490" cy="40" r="1" fill="rgba(255,255,255,0.5)"/>
+                  <!-- Main hotel tower - glass atrium -->
+                  <rect x="140" y="60" width="280" height="200" fill="url(#glassGrad)" stroke="rgba(198,167,94,0.3)" stroke-width="1"/>
+                  <!-- Glass atrium grid lines -->
+                  <line x1="175" y1="60" x2="175" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="210" y1="60" x2="210" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="245" y1="60" x2="245" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="280" y1="60" x2="280" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="315" y1="60" x2="315" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="350" y1="60" x2="350" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="385" y1="60" x2="385" y2="260" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="140" y1="95" x2="420" y2="95" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="140" y1="130" x2="420" y2="130" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="140" y1="165" x2="420" y2="165" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="140" y1="200" x2="420" y2="200" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <line x1="140" y1="235" x2="420" y2="235" stroke="rgba(198,167,94,0.1)" stroke-width="0.5"/>
+                  <!-- Left wing -->
+                  <rect x="60" y="120" width="85" height="140" fill="rgba(19,46,71,0.9)" stroke="rgba(198,167,94,0.2)" stroke-width="1"/>
+                  <!-- Right wing -->
+                  <rect x="415" y="120" width="85" height="140" fill="rgba(19,46,71,0.9)" stroke="rgba(198,167,94,0.2)" stroke-width="1"/>
+                  <!-- Gold accent band at top -->
+                  <rect x="140" y="58" width="280" height="4" fill="url(#goldGrad)"/>
+                  <rect x="60" y="118" width="85" height="3" fill="url(#goldGrad)"/>
+                  <rect x="415" y="118" width="85" height="3" fill="url(#goldGrad)"/>
+                  <!-- Gaylord sign -->
+                  <rect x="215" y="75" width="130" height="24" rx="2" fill="rgba(198,167,94,0.15)" stroke="rgba(198,167,94,0.4)" stroke-width="0.5"/>
+                  <text x="280" y="91" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="rgba(198,167,94,0.9)" letter-spacing="2">GAYLORD NATIONAL</text>
+                  <!-- Flag poles -->
+                  <line x1="270" y1="35" x2="270" y2="62" stroke="rgba(198,167,94,0.5)" stroke-width="1"/>
+                  <rect x="270" y="35" width="18" height="12" fill="rgba(198,80,80,0.6)"/>
+                  <line x1="290" y1="40" x2="290" y2="62" stroke="rgba(198,167,94,0.5)" stroke-width="1"/>
+                  <rect x="290" y="40" width="18" height="11" fill="rgba(60,80,198,0.6)"/>
+                  <!-- Lit windows in wings -->
+                  <rect x="70" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.5)"/>
+                  <rect x="88" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.3)"/>
+                  <rect x="110" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.4)"/>
+                  <rect x="70" y="148" width="12" height="8" rx="1" fill="rgba(255,220,130,0.4)"/>
+                  <rect x="88" y="148" width="12" height="8" rx="1" fill="rgba(255,220,130,0.5)"/>
+                  <rect x="425" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.4)"/>
+                  <rect x="443" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.5)"/>
+                  <rect x="465" y="130" width="12" height="8" rx="1" fill="rgba(255,220,130,0.3)"/>
+                  <!-- Water / Potomac River -->
+                  <rect x="0" y="260" width="560" height="100" fill="url(#waterGrad)"/>
+                  <!-- Water reflections -->
+                  <ellipse cx="280" cy="275" rx="120" ry="8" fill="rgba(198,167,94,0.08)"/>
+                  <line x1="120" y1="275" x2="440" y2="275" stroke="rgba(198,167,94,0.06)" stroke-width="1"/>
+                  <line x1="150" y1="288" x2="410" y2="288" stroke="rgba(198,167,94,0.04)" stroke-width="1"/>
+                  <!-- Gold reflection of building -->
+                  <ellipse cx="280" cy="270" rx="80" ry="4" fill="rgba(198,167,94,0.1)"/>
+                  <!-- Waterfront promenade -->
+                  <rect x="80" y="255" width="400" height="10" fill="rgba(30,50,70,0.8)"/>
+                  <rect x="80" y="254" width="400" height="2" fill="rgba(198,167,94,0.2)"/>
+                  <!-- Lamp posts on promenade -->
+                  <line x1="120" y1="240" x2="120" y2="256" stroke="rgba(198,167,94,0.4)" stroke-width="1.5"/>
+                  <circle cx="120" cy="238" r="3" fill="rgba(255,220,100,0.5)"/>
+                  <line x1="200" y1="240" x2="200" y2="256" stroke="rgba(198,167,94,0.4)" stroke-width="1.5"/>
+                  <circle cx="200" cy="238" r="3" fill="rgba(255,220,100,0.5)"/>
+                  <line x1="360" y1="240" x2="360" y2="256" stroke="rgba(198,167,94,0.4)" stroke-width="1.5"/>
+                  <circle cx="360" cy="238" r="3" fill="rgba(255,220,100,0.5)"/>
+                  <line x1="440" y1="240" x2="440" y2="256" stroke="rgba(198,167,94,0.4)" stroke-width="1.5"/>
+                  <circle cx="440" cy="238" r="3" fill="rgba(255,220,100,0.5)"/>
                 </svg>
               </div>
-              <p class="map-placeholder__label">Washington, DC</p>
-              <p class="map-placeholder__sublabel">Venue TBA · 2026</p>
+              <div class="venue-showcase__details">
+                <span class="venue-showcase__name">Gaylord National Resort</span>
+                <span class="venue-showcase__location">National Harbor · Potomac Waterfront</span>
+              </div>
             </div>
           </div>
         </div>
@@ -554,18 +654,18 @@
   ================================= -->
   <section class="section section--dark email-signup" id="signup">
     <div class="container container--narrow text-center">
-      <p class="section-label reveal">Stay Informed</p>
-      <h2 class="reveal reveal-delay-1">Be the First to <span class="text-shimmer">Know</span></h2>
+      <p class="section-label reveal">Get Involved</p>
+      <h2 class="reveal reveal-delay-1">Express Your <span class="text-shimmer">Interest</span></h2>
       <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
       <p class="email-signup__body reveal reveal-delay-2">
-        Get early access to speakers, schedule drops, ticket sales, and exclusive community updates from WHE Fest.
+        Contact us to express interest in volunteering, sponsoring, or speaking at WHE Fest 2026. More details coming soon.
       </p>
       <form class="email-signup__form reveal reveal-delay-3" action="#" method="post" novalidate>
         <div class="email-signup__row">
           <input class="input" type="email" name="email" placeholder="Your email address" required aria-label="Email address" autocomplete="email"/>
           <button type="submit" class="btn btn--glow">Join the Movement</button>
         </div>
-        <p class="email-signup__disclaimer">No spam. Ever. Unsubscribe anytime.</p>
+        <p class="email-signup__disclaimer">We'll be in touch with details. No spam. Ever.</p>
       </form>
     </div>
   </section>
@@ -577,7 +677,7 @@
   <!-- Scripts -->
   </main>
 
-  <script src="js/hero-animation.js" defer></script>
+  <script src="js/hero-animation.js?v=2" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/components.js" defer></script>
 </body>

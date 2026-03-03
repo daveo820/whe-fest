@@ -71,12 +71,12 @@
     }
 
     reset() {
-      // Origin near center-top of canvas
+      // Origin below the logo, near bottom of hero
       this.originX = W * 0.5;
-      this.originY = H * 0.25;
-      // Spread rays in a fan
+      this.originY = H * 0.78;
+      // Spread rays in a fan pointing upward
       const spread = Math.PI * 0.9;
-      const baseAngle = Math.PI * 0.5; // pointing down
+      const baseAngle = Math.PI * 1.5; // pointing up
       this.angle = baseAngle - spread / 2 + (this.index / (this.total - 1)) * spread;
       this.length = Math.random() * H * 0.6 + H * 0.3;
       this.width = Math.random() * 60 + 20;
@@ -130,15 +130,15 @@
     const alpha = 0.04 + pulse * 0.03;
 
     const grad = ctx.createRadialGradient(
-      W / 2, H * 0.28, 0,
-      W / 2, H * 0.28, radius
+      W / 2, H * 0.78, 0,
+      W / 2, H * 0.78, radius
     );
     grad.addColorStop(0, `rgba(255,255,255,${(alpha * 0.6).toFixed(3)})`);
     grad.addColorStop(0.3, `${GOLD}${alpha.toFixed(3)})`);
     grad.addColorStop(1, `${GOLD}0)`);
 
     ctx.beginPath();
-    ctx.ellipse(W / 2, H * 0.28, radius * 1.4, radius, 0, 0, Math.PI * 2);
+    ctx.ellipse(W / 2, H * 0.78, radius * 1.4, radius, 0, 0, Math.PI * 2);
     ctx.fillStyle = grad;
     ctx.fill();
   }
@@ -172,7 +172,7 @@
     // Reposition rays on resize
     rays.forEach(r => {
       r.originX = W * 0.5;
-      r.originY = H * 0.25;
+      r.originY = H * 0.78;
     });
   });
 

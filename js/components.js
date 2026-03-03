@@ -75,12 +75,12 @@
         <div class="site-footer__grid">
 
           <div>
-            <a href="${root}index.html" class="site-footer__brand-name">
-              WHE<span>Fest</span>
+            <a href="${root}index.html" class="site-footer__logo-link" aria-label="WHE Fest Home">
+              <img src="${root}assets/logo-horizontal.svg" alt="WHE Fest" class="site-footer__logo-img" width="200" height="40" loading="lazy" />
             </a>
             <p class="site-footer__tagline">
-              Women Health Empowerment Festival<br/>
-              Washington, DC · 2026
+              Women · Health · Empower<br/>
+              National Harbor, MD · 2026
             </p>
             <p class="site-footer__org">
               Connected with Moms Across America<br/>
@@ -100,6 +100,7 @@
             <a href="${root}pages/schedule.html" class="site-footer__link">Schedule</a>
             <a href="${root}pages/location.html" class="site-footer__link">Location &amp; Lodging</a>
             <a href="${root}pages/tickets.html" class="site-footer__link">Tickets</a>
+            <a href="${root}pages/gala.html" class="site-footer__link">Saturday Gala</a>
             <a href="${root}pages/sponsors.html" class="site-footer__link">Sponsors</a>
           </div>
 

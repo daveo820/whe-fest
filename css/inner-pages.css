@@ -4,6 +4,98 @@
               Sponsors, Tickets
    ============================================ */
 
+/* ---------- Light Theme Overrides for Inner Pages ---------- */
+/* Hotel, transport, ticket full cards: light bg */
+.hotel-card {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+  box-shadow: 0 2px 12px rgba(168,137,62,0.07);
+}
+.hotel-card__name { color: var(--text-on-light) !important; }
+.hotel-card__address { color: var(--text-muted-on-light) !important; }
+.hotel-card__features li { color: var(--text-muted-on-light) !important; }
+
+.transport-card {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+  box-shadow: 0 2px 12px rgba(168,137,62,0.07);
+}
+.transport-card h3 { color: var(--text-on-light) !important; }
+.transport-card p { color: var(--text-muted-on-light) !important; }
+.transport-card__list li { color: var(--text-muted-on-light) !important; }
+
+.ticket-full-card {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+  box-shadow: 0 2px 12px rgba(168,137,62,0.07);
+}
+.ticket-full-card--vip {
+  border-color: var(--deep-gold) !important;
+  background: linear-gradient(135deg, rgba(198,167,94,0.06) 0%, white 100%) !important;
+  box-shadow: 0 8px 30px rgba(198,167,94,0.15) !important;
+}
+.ticket-full-card__price { color: var(--text-on-light) !important; }
+.ticket-full-card__features li { color: var(--text-muted-on-light) !important; border-bottom-color: rgba(198,167,94,0.12) !important; }
+.ticket-full-card__note { color: var(--text-muted-on-light) !important; }
+.ticket-full-card__note a { color: var(--gold-dark) !important; }
+
+.faq-question { color: var(--text-on-light) !important; }
+.faq-answer { color: var(--text-muted-on-light) !important; }
+.faq-item { border-bottom-color: rgba(198,167,94,0.15) !important; }
+
+.sponsor-full-card, .sponsor-tier-card {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+}
+.sponsor-tier-card__name { color: var(--text-on-light) !important; }
+.sponsor-tier-card__desc { color: var(--text-muted-on-light) !important; }
+.sponsor-tier-card__benefits li { color: var(--text-muted-on-light) !important; }
+
+.speaker-full-card {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+  box-shadow: 0 2px 12px rgba(168,137,62,0.07);
+}
+.speaker-full-card__info h3 { color: var(--text-on-light) !important; }
+.speaker-bio-short { color: var(--text-muted-on-light) !important; }
+
+.speaker-img-placeholder {
+  background: linear-gradient(135deg, #E8E0D0 0%, #F5EDD8 100%) !important;
+}
+
+.pull-quote {
+  background: rgba(198,167,94,0.06) !important;
+}
+.pull-quote__text { color: var(--text-on-light) !important; }
+
+.nonprofit-discount p { color: var(--text-muted-on-light) !important; }
+
+.urgency-bar { color: var(--gold-dark) !important; }
+
+/* Page hero text for light theme */
+.page-hero__sub { color: var(--text-muted-on-light); }
+
+/* Schedule page */
+.fti__title { color: var(--text-on-light) !important; }
+.fti__desc { color: var(--text-muted-on-light) !important; }
+.full-timeline-item--keynote .fti__content {
+  background: rgba(198,167,94,0.05) !important;
+  border-color: rgba(198,167,94,0.2) !important;
+}
+
+/* Sponsors logo blocks */
+.sponsor-logo-block {
+  background: white !important;
+  border-color: var(--border-on-light) !important;
+}
+.sponsor-logo-block span { color: var(--text-muted-on-light) !important; }
+
+/* Map embed placeholder for light theme */
+.map-embed-placeholder {
+  background: linear-gradient(135deg, #EDE5D4 0%, #F5EDD8 100%) !important;
+  border-color: var(--border-on-light) !important;
+}
+
 /* ---------- Page Hero ---------- */
 .page-hero {
   position: relative;

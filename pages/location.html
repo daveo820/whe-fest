@@ -4,39 +4,193 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0B1C2D" />
-  <link rel="apple-touch-icon" href="../assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="../assets/favicon.svg?v=2" />
   <title>Location &amp; Lodging — WHE Fest 2026</title>
-  <meta name="description" content="Plan your trip to WHE Fest 2026 in Washington, DC. Venue info, partner hotels, transportation, and parking." />
+  <meta name="description" content="WHE Fest 2026 is hosted at the spectacular Gaylord National Resort &amp; Convention Center on the Potomac River waterfront. Plan your visit, book your room, and explore transportation options." />
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type"        content="website" />
-  <meta property="og:title"       content="WHE Fest 2026 — Location & Lodging" />
-  <meta property="og:description" content="Plan your trip to WHE Fest 2026 in Washington, DC. Venue details, partner hotels, and transportation guide." />
+  <meta property="og:title"       content="WHE Fest 2026 — Location &amp; Lodging" />
+  <meta property="og:description" content="WHE Fest 2026 at Gaylord National Resort &amp; Convention Center — Potomac waterfront. Plan your visit, book your room." />
   <meta property="og:url"         content="https://whefest.org/pages/location.html" />
   <meta property="og:image"       content="https://whefest.org/assets/og-image.jpg" />
   <meta property="og:site_name"   content="WHE Fest" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="WHE Fest 2026 — Location & Lodging" />
-  <meta name="twitter:description" content="Plan your trip to WHE Fest 2026 in Washington, DC. Venue details, partner hotels, and transportation guide." />
+  <meta name="twitter:title"      content="WHE Fest 2026 — Location &amp; Lodging" />
+  <meta name="twitter:description" content="WHE Fest 2026 at Gaylord National Resort &amp; Convention Center — Potomac waterfront." />
   <meta name="twitter:image"      content="https://whefest.org/assets/og-image.jpg" />
   <link rel="canonical" href="https://whefest.org/pages/location.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg?v=2" />
   <link rel="icon" href="../assets/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
   <link rel="stylesheet" href="../css/design-system.css" />
   <link rel="stylesheet" href="../css/inner-pages.css" />
   <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    /* Location page specific overrides for light theme */
+    .location-body { color: var(--text-muted-on-light); }
+    .location-features li { color: var(--text-on-light); }
+    .hotel-card { background: white; border-color: var(--border-on-light); box-shadow: 0 2px 12px rgba(168,137,62,0.07); }
+    .hotel-card__name { color: var(--text-on-light); }
+    .hotel-card__address { color: var(--text-muted-on-light); }
+    .hotel-card__features li { color: var(--text-muted-on-light); }
+    .transport-card { background: white; border-color: var(--border-on-light); box-shadow: 0 2px 12px rgba(168,137,62,0.07); }
+    .transport-card h3 { color: var(--text-on-light); }
+    .transport-card p { color: var(--text-muted-on-light); }
+    .transport-card__list li { color: var(--text-muted-on-light); }
+    .page-hero__sub { color: var(--text-muted-on-light); }
+
+    /* Venue hero illustration */
+    .venue-hero {
+      width: 100%;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      background: var(--blue-deep);
+      border: 1px solid var(--border-on-light);
+      box-shadow: 0 16px 60px rgba(11,28,45,0.15);
+      position: relative;
+    }
+    .venue-hero__img { display: block; width: 100%; height: auto; }
+    .venue-hero__caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-lg);
+      background: linear-gradient(0deg, rgba(7,20,34,0.9) 0%, transparent 100%);
+    }
+    .venue-hero__caption-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      color: var(--soft-white);
+      font-weight: 700;
+    }
+    .venue-hero__caption-sub {
+      font-size: var(--text-xs);
+      color: var(--deep-gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    /* Feature highlight cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-2xl);
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid var(--border-on-light);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-xl);
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(168,137,62,0.07);
+      transition: all var(--transition-base);
+    }
+    .feature-card:hover {
+      border-color: var(--deep-gold);
+      box-shadow: 0 8px 30px rgba(198,167,94,0.15);
+      transform: translateY(-3px);
+    }
+    .feature-card__icon {
+      font-size: 2rem;
+      margin-bottom: var(--space-md);
+      line-height: 1;
+    }
+    .feature-card__title {
+      font-family: var(--font-heading);
+      font-size: var(--text-lg);
+      color: var(--text-on-light);
+      margin-bottom: var(--space-sm);
+    }
+    .feature-card__desc {
+      font-size: var(--text-sm);
+      color: var(--text-muted-on-light);
+      line-height: 1.7;
+    }
+
+    /* Book room CTA banner */
+    .book-banner {
+      background: linear-gradient(135deg, var(--midnight-blue) 0%, var(--blue-deep) 100%);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-2xl) var(--space-xl);
+      text-align: center;
+      border: 1px solid rgba(198,167,94,0.2);
+      box-shadow: 0 12px 40px rgba(11,28,45,0.1);
+      margin-top: var(--space-2xl);
+    }
+    .book-banner h3 {
+      color: var(--soft-white);
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-md);
+    }
+    .book-banner p {
+      color: var(--gray-warm);
+      max-width: 520px;
+      margin: 0 auto var(--space-xl);
+      line-height: 1.8;
+    }
+    .book-banner .btn--outline {
+      color: var(--soft-white);
+      border-color: rgba(198,167,94,0.6);
+    }
+    .book-banner .btn--outline:hover {
+      background: rgba(198,167,94,0.15);
+      color: var(--deep-gold);
+    }
+
+    /* Waterfront highlight */
+    .waterfront-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: center;
+    }
+    .waterfront-visual {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      background: var(--blue-deep);
+      border: 1px solid rgba(198,167,94,0.2);
+      box-shadow: 0 16px 60px rgba(11,28,45,0.12);
+    }
+
+    /* Map embed */
+    .map-embed-wrapper {
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-on-light);
+      box-shadow: 0 8px 30px rgba(168,137,62,0.1);
+      height: 400px;
+    }
+    .map-embed-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .feature-grid { grid-template-columns: 1fr; }
+      .waterfront-block { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 1024px) {
+      .feature-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
 
   <nav class="nav" id="mainNav">
     <div class="nav__inner">
-      <a href="../index.html" class="nav__logo">WHE<span>Fest</span></a>
+      <a href="../index.html" class="nav__logo"><img src="../assets/logo-main.png" alt="WHE Fest" class="nav__logo-img" /></a>
       <ul class="nav__links" id="navLinks">
         <li><a href="speakers.html" class="nav__link">Speakers</a></li>
         <li><a href="schedule.html" class="nav__link">Schedule</a></li>
         <li><a href="location.html" class="nav__link nav__link--active">Location</a></li>
+        <li><a href="gala.html" class="nav__link">Gala</a></li>
         <li><a href="sponsors.html" class="nav__link">Sponsors</a></li>
         <li><a href="tickets.html" class="btn btn--primary btn--sm">Get Tickets</a></li>
       </ul>
@@ -48,115 +202,304 @@
 
   <main id="main-content">
 
+  <!-- Page Hero -->
   <section class="page-hero">
     <div class="page-hero__bg"></div>
     <div class="container text-center">
       <p class="section-label reveal">Plan Your Visit</p>
-      <h1 class="reveal reveal-delay-1">Washington, <span class="text-shimmer">DC</span></h1>
+      <h1 class="reveal reveal-delay-1">Gaylord National <span class="text-shimmer">Resort</span></h1>
       <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
-      <p class="page-hero__sub reveal reveal-delay-2">Where your voice is closest to the people who need to hear it.</p>
+      <p class="page-hero__sub reveal reveal-delay-2">Potomac Waterfront · National Harbor, Maryland</p>
     </div>
   </section>
 
-  <!-- Venue -->
+  <!-- Venue Hero Section -->
   <section class="section section--gradient">
     <div class="container">
-      <div class="location-block">
+
+      <!-- Venue illustration -->
+      <div class="venue-hero reveal">
+        <svg viewBox="0 0 1200 480" class="venue-hero__img" aria-label="Gaylord National Resort illustration" role="img">
+          <defs>
+            <linearGradient id="vSky" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#071422"/>
+              <stop offset="60%" style="stop-color:#0B2035"/>
+              <stop offset="100%" style="stop-color:#132E47"/>
+            </linearGradient>
+            <linearGradient id="vWater" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#0D2A42"/>
+              <stop offset="100%" style="stop-color:#071422"/>
+            </linearGradient>
+            <linearGradient id="vGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:rgba(180,220,255,0.22)"/>
+              <stop offset="50%" style="stop-color:rgba(120,180,240,0.12)"/>
+              <stop offset="100%" style="stop-color:rgba(80,140,200,0.06)"/>
+            </linearGradient>
+            <linearGradient id="vGold" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#8A6E2E"/>
+              <stop offset="30%" style="stop-color:#C6A75E"/>
+              <stop offset="60%" style="stop-color:#F0E0B0"/>
+              <stop offset="100%" style="stop-color:#A8893E"/>
+            </linearGradient>
+            <linearGradient id="vWing" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#102840"/>
+              <stop offset="100%" style="stop-color:#071422"/>
+            </linearGradient>
+            <radialGradient id="vMoon" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" style="stop-color:#F0E8D0;stop-opacity:0.9"/>
+              <stop offset="100%" style="stop-color:#F0E8D0;stop-opacity:0"/>
+            </radialGradient>
+          </defs>
+          <!-- Sky -->
+          <rect width="1200" height="360" fill="url(#vSky)"/>
+          <!-- Moon glow -->
+          <circle cx="1050" cy="70" r="60" fill="url(#vMoon)" opacity="0.4"/>
+          <circle cx="1050" cy="70" r="28" fill="rgba(240,232,208,0.7)"/>
+          <!-- Stars -->
+          <circle cx="80" cy="40" r="1.2" fill="rgba(255,255,255,0.55)"/>
+          <circle cx="190" cy="25" r="1" fill="rgba(255,255,255,0.45)"/>
+          <circle cx="350" cy="18" r="1.5" fill="rgba(255,255,255,0.6)"/>
+          <circle cx="480" cy="35" r="1" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="620" cy="12" r="1.2" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="760" cy="28" r="1" fill="rgba(255,255,255,0.35)"/>
+          <circle cx="880" cy="18" r="1.5" fill="rgba(255,255,255,0.5)"/>
+          <circle cx="950" cy="45" r="1" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="140" cy="80" r="0.8" fill="rgba(255,255,255,0.3)"/>
+          <circle cx="560" cy="55" r="0.8" fill="rgba(255,255,255,0.4)"/>
+          <circle cx="700" cy="60" r="1" fill="rgba(255,255,255,0.35)"/>
+
+          <!-- Far background buildings -->
+          <rect x="0" y="200" width="120" height="130" fill="rgba(10,24,40,0.6)"/>
+          <rect x="1080" y="210" width="120" height="120" fill="rgba(10,24,40,0.6)"/>
+
+          <!-- Main Gaylord Atrium - center tower -->
+          <rect x="340" y="60" width="520" height="300" fill="url(#vGlass)" stroke="rgba(198,167,94,0.25)" stroke-width="1.5"/>
+          <!-- Glass grid -->
+          <line x1="380" y1="60" x2="380" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="420" y1="60" x2="420" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="460" y1="60" x2="460" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="500" y1="60" x2="500" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="540" y1="60" x2="540" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="580" y1="60" x2="580" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="620" y1="60" x2="620" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="660" y1="60" x2="660" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="700" y1="60" x2="700" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="740" y1="60" x2="740" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="780" y1="60" x2="780" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="820" y1="60" x2="820" y2="360" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="340" y1="110" x2="860" y2="110" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="340" y1="160" x2="860" y2="160" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="340" y1="210" x2="860" y2="210" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="340" y1="260" x2="860" y2="260" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <line x1="340" y1="310" x2="860" y2="310" stroke="rgba(198,167,94,0.08)" stroke-width="0.8"/>
+          <!-- Atrium interior glow -->
+          <ellipse cx="600" cy="200" rx="200" ry="130" fill="rgba(255,220,130,0.04)"/>
+          <!-- Glass roof arch -->
+          <path d="M340 60 Q600 10 860 60" stroke="rgba(198,167,94,0.4)" stroke-width="2" fill="none"/>
+
+          <!-- Left hotel tower -->
+          <rect x="100" y="100" width="245" height="260" fill="url(#vWing)" stroke="rgba(198,167,94,0.2)" stroke-width="1"/>
+          <!-- Left tower windows -->
+          <rect x="115" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="143" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="171" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="199" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.35)"/>
+          <rect x="227" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.4)"/>
+          <rect x="115" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="143" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="171" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.2)"/>
+          <rect x="199" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="227" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="115" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.4)"/>
+          <rect x="143" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.25)"/>
+          <rect x="171" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="199" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.35)"/>
+          <rect x="115" y="190" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="143" y="190" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="171" y="190" width="18" height="12" rx="1" fill="rgba(255,220,130,0.2)"/>
+          <rect x="199" y="190" width="18" height="12" rx="1" fill="rgba(255,220,130,0.4)"/>
+          <rect x="227" y="190" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+
+          <!-- Right hotel tower -->
+          <rect x="855" y="100" width="245" height="260" fill="url(#vWing)" stroke="rgba(198,167,94,0.2)" stroke-width="1"/>
+          <!-- Right tower windows -->
+          <rect x="870" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.4)"/>
+          <rect x="898" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="926" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="954" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="982" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.35)"/>
+          <rect x="1010" y="115" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="870" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.25)"/>
+          <rect x="898" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="926" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="954" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="982" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.4)"/>
+          <rect x="1010" y="140" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+          <rect x="870" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.5)"/>
+          <rect x="898" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.2)"/>
+          <rect x="926" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.45)"/>
+          <rect x="954" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.35)"/>
+          <rect x="982" y="165" width="18" height="12" rx="1" fill="rgba(255,220,130,0.3)"/>
+
+          <!-- Gold trim at top -->
+          <rect x="340" y="58" width="520" height="4" fill="url(#vGold)"/>
+          <rect x="100" y="98" width="245" height="3" fill="url(#vGold)"/>
+          <rect x="855" y="98" width="245" height="3" fill="url(#vGold)"/>
+
+          <!-- Hotel name sign -->
+          <rect x="440" y="78" width="320" height="32" rx="3" fill="rgba(198,167,94,0.12)" stroke="rgba(198,167,94,0.4)" stroke-width="0.8"/>
+          <text x="600" y="99" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="rgba(198,167,94,0.92)" letter-spacing="3">GAYLORD NATIONAL RESORT</text>
+
+          <!-- American flags -->
+          <line x1="560" y1="22" x2="560" y2="62" stroke="rgba(198,167,94,0.5)" stroke-width="1.5"/>
+          <rect x="560" y="22" width="28" height="18" fill="rgba(180,50,50,0.65)"/>
+          <line x1="600" y1="15" x2="600" y2="62" stroke="rgba(198,167,94,0.5)" stroke-width="1.5"/>
+          <rect x="600" y="15" width="28" height="18" fill="rgba(60,80,180,0.65)"/>
+          <line x1="640" y1="22" x2="640" y2="62" stroke="rgba(198,167,94,0.5)" stroke-width="1.5"/>
+          <rect x="640" y="22" width="28" height="18" fill="rgba(180,50,50,0.65)"/>
+
+          <!-- Water / Potomac River -->
+          <rect x="0" y="355" width="1200" height="125" fill="url(#vWater)"/>
+          <!-- Water shimmer lines -->
+          <line x1="0" y1="372" x2="1200" y2="372" stroke="rgba(198,167,94,0.06)" stroke-width="1.5"/>
+          <line x1="0" y1="388" x2="1200" y2="388" stroke="rgba(198,167,94,0.04)" stroke-width="1"/>
+          <line x1="0" y1="405" x2="1200" y2="405" stroke="rgba(198,167,94,0.03)" stroke-width="1"/>
+          <!-- Building reflections in water -->
+          <rect x="340" y="360" width="520" height="80" fill="rgba(130,180,220,0.06)"/>
+          <ellipse cx="600" cy="370" rx="200" ry="10" fill="rgba(198,167,94,0.06)"/>
+          <rect x="100" y="360" width="245" height="60" fill="rgba(100,150,200,0.04)"/>
+          <rect x="855" y="360" width="245" height="60" fill="rgba(100,150,200,0.04)"/>
+
+          <!-- Waterfront promenade -->
+          <rect x="60" y="348" width="1080" height="14" fill="rgba(20,40,60,0.85)"/>
+          <rect x="60" y="347" width="1080" height="3" fill="url(#vGold)" opacity="0.35"/>
+
+          <!-- Promenade lamp posts -->
+          <line x1="150" y1="318" x2="150" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="150" cy="315" r="5" fill="rgba(255,220,100,0.6)"/>
+          <line x1="300" y1="318" x2="300" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="300" cy="315" r="5" fill="rgba(255,220,100,0.5)"/>
+          <line x1="500" y1="318" x2="500" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="500" cy="315" r="5" fill="rgba(255,220,100,0.6)"/>
+          <line x1="700" y1="318" x2="700" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="700" cy="315" r="5" fill="rgba(255,220,100,0.5)"/>
+          <line x1="900" y1="318" x2="900" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="900" cy="315" r="5" fill="rgba(255,220,100,0.6)"/>
+          <line x1="1050" y1="318" x2="1050" y2="349" stroke="rgba(198,167,94,0.5)" stroke-width="2"/>
+          <circle cx="1050" cy="315" r="5" fill="rgba(255,220,100,0.5)"/>
+        </svg>
+        <div class="venue-hero__caption">
+          <div class="venue-hero__caption-title">Gaylord National Resort &amp; Convention Center</div>
+          <div class="venue-hero__caption-sub">201 Waterfront Street · National Harbor, MD · Potomac River</div>
+        </div>
+      </div>
+
+      <!-- Venue description and Book button -->
+      <div class="location-block mt-2xl" style="margin-top: var(--space-2xl);">
         <div class="location-block__text reveal">
-          <p class="section-label">Venue</p>
-          <h2>Walter E. Washington <span class="text-shimmer">Convention Center</span></h2>
+          <p class="section-label">The Venue</p>
+          <h2>Where Elegance <span class="text-shimmer">Meets the Potomac</span></h2>
           <hr class="divider divider-reveal" aria-hidden="true"/>
-          <p class="location-body">801 Mt Vernon Pl NW, Washington, DC 20001</p>
+          <p class="location-body">
+            The Gaylord National Resort &amp; Convention Center is one of the most breathtaking event venues on the East Coast — a magnificent glass-enclosed resort rising above the Potomac River waterfront at National Harbor, just minutes from Washington, D.C.
+          </p>
           <p class="location-body mt-md">
-            One of the most prestigious event venues in the nation's capital, the Walter E. Washington Convention Center offers world-class facilities for a world-class gathering. With over 700,000 square feet of flexible event space, it is the perfect stage for WHE Fest's main stage, breakout tracks, VIP gala, and marketplace.
+            With over 2,000 hotel rooms, a stunning 19-story glass atrium, world-class dining, a full-service spa, and more than 470,000 square feet of convention space, the Gaylord National offers every amenity for an extraordinary three-day experience.
           </p>
           <ul class="location-features mt-lg">
-            <li><span class="detail-icon">✦</span> 3 dedicated stage areas</li>
-            <li><span class="detail-icon">✦</span> VIP Gala Grand Ballroom</li>
-            <li><span class="detail-icon">✦</span> Women's health marketplace floor</li>
-            <li><span class="detail-icon">✦</span> On-site catering &amp; dining</li>
-            <li><span class="detail-icon">✦</span> Full ADA accessibility</li>
+            <li><span class="detail-icon">✦</span> 19-story glass atrium — spectacular interior</li>
+            <li><span class="detail-icon">✦</span> 470,000+ sq ft of event &amp; convention space</li>
+            <li><span class="detail-icon">✦</span> 2,000+ hotel rooms on-site</li>
+            <li><span class="detail-icon">✦</span> Full-service spa &amp; fitness center</li>
+            <li><span class="detail-icon">✦</span> Multiple waterfront dining venues</li>
+            <li><span class="detail-icon">✦</span> Potomac River views throughout</li>
           </ul>
         </div>
-        <div class="location-block__map reveal reveal-delay-2">
-          <div class="map-embed-placeholder">
-            <div class="map-embed-placeholder__inner">
-              <svg viewBox="0 0 24 32" width="40" height="53" style="margin:0 auto 1rem;">
-                <path d="M12 0C5.4 0 0 5.4 0 12c0 7.5 12 20 12 20S24 19.5 24 12C24 5.4 18.6 0 12 0z" fill="#C6A75E"/>
-                <circle cx="12" cy="12" r="5" fill="#0B1C2D"/>
-              </svg>
-              <p style="font-family:var(--font-heading); font-size:1.2rem; color:var(--soft-white);">Convention Center</p>
-              <p style="font-size:var(--text-sm); color:var(--deep-gold); margin-top:0.5rem;">801 Mt Vernon Pl NW, DC</p>
-              <p style="font-size:var(--text-xs); color:var(--gray-muted); margin-top:1rem;">Interactive map will be embedded here</p>
+        <div class="reveal reveal-delay-2">
+          <div class="book-banner">
+            <h3>Book Your Room</h3>
+            <p>
+              Stay on-site at the Gaylord National Resort for the ultimate WHE Fest experience. Immerse yourself in the beauty of the Potomac waterfront, steps from every session, workshop, and the Saturday evening Gala.
+            </p>
+            <div class="flex-center flex-gap" style="flex-wrap:wrap;">
+              <a href="https://www.marriott.com/en-us/hotels/wasgn-gaylord-national-resort-and-convention-center/overview/" target="_blank" rel="noopener" class="btn btn--glow">Book Your Room at Marriott</a>
+              <a href="#transportation" class="btn btn--outline">Getting Here</a>
             </div>
+            <p style="font-size:var(--text-xs); color:var(--gray-muted); margin-top:var(--space-md);">WHE Fest group rate codes will be provided with your ticket confirmation.</p>
           </div>
         </div>
       </div>
+
+      <!-- Feature highlights -->
+      <div class="feature-grid reveal reveal-delay-2">
+        <div class="feature-card">
+          <div class="feature-card__icon">🏛️</div>
+          <div class="feature-card__title">Glass Atrium</div>
+          <div class="feature-card__desc">A stunning 19-story glass-enclosed atrium — one of the most dramatic interior spaces on the East Coast.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🌊</div>
+          <div class="feature-card__title">Waterfront Views</div>
+          <div class="feature-card__desc">Panoramic views of the Potomac River and Washington, D.C. from the resort's iconic waterfront promenade.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🌿</div>
+          <div class="feature-card__title">World-Class Spa</div>
+          <div class="feature-card__desc">Rejuvenate between sessions at the Relâche Spa — a full-service wellness sanctuary on-site.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🍽️</div>
+          <div class="feature-card__title">Organic &amp; Fine Dining</div>
+          <div class="feature-card__desc">Multiple on-site restaurants featuring elevated cuisine, perfect for the Saturday Gala and casual dining alike.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🎭</div>
+          <div class="feature-card__title">Grand Ballrooms</div>
+          <div class="feature-card__desc">Magnificent event spaces for our keynote stages, breakout sessions, and the Saturday evening Gala celebration.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card__icon">🚢</div>
+          <div class="feature-card__title">National Harbor</div>
+          <div class="feature-card__desc">A vibrant waterfront destination with shops, restaurants, and a Ferris wheel — all steps from the resort.</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- Hotels -->
-  <section class="section section--dark">
+
+  <!-- Map Section -->
+  <section class="section section--dark" id="transportation">
     <div class="container">
       <div class="text-center mb-xl">
-        <p class="section-label reveal">Partner Hotels</p>
-        <h2 class="reveal reveal-delay-1">Stay in <span class="text-shimmer">Style</span></h2>
+        <p class="section-label reveal">Find Us</p>
+        <h2 class="reveal reveal-delay-1">Gaylord National on the <span class="text-shimmer">Potomac</span></h2>
         <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
-        <p class="reveal reveal-delay-2" style="color:var(--gray-warm); max-width:600px; margin:0 auto;">Exclusive room blocks have been secured at partner hotels. Use the WHE Fest rate code at booking. <strong style="color:var(--deep-gold)">Rate codes provided upon ticket purchase.</strong></p>
+        <p class="reveal reveal-delay-2" style="color:var(--text-muted-on-light); max-width:580px; margin:0 auto;">
+          201 Waterfront Street, National Harbor, MD 20745<br/>
+          Just 10 miles south of downtown Washington, D.C.
+        </p>
       </div>
 
-      <div class="hotels-grid">
-        <div class="hotel-card reveal">
-          <div class="hotel-card__tier">Official Hotel</div>
-          <h3 class="hotel-card__name">Marriott Marquis Washington, DC</h3>
-          <p class="hotel-card__address">901 Massachusetts Ave NW</p>
-          <ul class="hotel-card__features">
-            <li><span class="detail-icon">✦</span> 3-minute walk to venue</li>
-            <li><span class="detail-icon">✦</span> WHE Fest group rate secured</li>
-            <li><span class="detail-icon">✦</span> Complimentary shuttle</li>
-            <li><span class="detail-icon">✦</span> Business center &amp; spa</li>
-          </ul>
-          <span class="hotel-card__badge">Closest to Venue</span>
-        </div>
-
-        <div class="hotel-card reveal reveal-delay-1">
-          <div class="hotel-card__tier">Partner Hotel</div>
-          <h3 class="hotel-card__name">Hyatt Regency Washington on Capitol Hill</h3>
-          <p class="hotel-card__address">400 New Jersey Ave NW</p>
-          <ul class="hotel-card__features">
-            <li><span class="detail-icon">✦</span> 10-minute metro or Uber</li>
-            <li><span class="detail-icon">✦</span> WHE Fest group rate available</li>
-            <li><span class="detail-icon">✦</span> Capitol Hill views</li>
-            <li><span class="detail-icon">✦</span> Rooftop lounge</li>
-          </ul>
-        </div>
-
-        <div class="hotel-card reveal reveal-delay-2">
-          <div class="hotel-card__tier">Budget Option</div>
-          <h3 class="hotel-card__name">Hampton Inn &amp; Suites Convention Center</h3>
-          <p class="hotel-card__address">901 6th St NW</p>
-          <ul class="hotel-card__features">
-            <li><span class="detail-icon">✦</span> 5-minute walk to venue</li>
-            <li><span class="detail-icon">✦</span> Complimentary breakfast</li>
-            <li><span class="detail-icon">✦</span> Best value option</li>
-            <li><span class="detail-icon">✦</span> WHE Fest rate honored</li>
-          </ul>
-          <span class="hotel-card__badge hotel-card__badge--value">Best Value</span>
-        </div>
+      <div class="map-embed-wrapper reveal reveal-delay-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3112.987!2d-77.0166!3d38.7835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b0f0f0f0f0f0%3A0x0!2sGaylord+National+Resort+%26+Convention+Center%2C+201+Waterfront+St%2C+National+Harbor%2C+MD+20745!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Gaylord National Resort &amp; Convention Center map"
+        ></iframe>
       </div>
-
-      <p class="text-center mt-xl reveal" style="color:var(--gray-muted); font-size:var(--text-sm);">
-        Hotel rate codes will be provided in your ticket confirmation email. Book early — blocks are limited.
-      </p>
     </div>
   </section>
+
 
   <!-- Transportation -->
   <section class="section section--blue">
     <div class="container">
       <div class="text-center mb-xl">
         <p class="section-label reveal">Getting Here</p>
-        <h2 class="reveal reveal-delay-1">Transportation <span class="text-shimmer">&amp; Parking</span></h2>
+        <h2 class="reveal reveal-delay-1">Transportation <span class="text-shimmer">&amp; Directions</span></h2>
         <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
       </div>
 
@@ -168,43 +511,43 @@
             </svg>
           </div>
           <h3>By Air</h3>
-          <p>Three major airports serve the DC metro area:</p>
+          <p>Three major airports serve the Washington area:</p>
           <ul class="transport-card__list">
-            <li><strong>DCA</strong> — Reagan National (15 min via metro)</li>
+            <li><strong>DCA</strong> — Reagan National (20 min by car)</li>
             <li><strong>IAD</strong> — Dulles International (45 min by car)</li>
-            <li><strong>BWI</strong> — Baltimore-Washington (35 min by car or MARC train)</li>
+            <li><strong>BWI</strong> — Baltimore-Washington (30 min by car)</li>
           </ul>
         </div>
 
         <div class="transport-card reveal reveal-delay-1">
           <div class="transport-card__icon">
             <svg viewBox="0 0 24 24" width="36" height="36" fill="var(--deep-gold)" aria-hidden="true">
-              <path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2l2-2h4l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zm0 2c3.51 0 5.44.49 5.93 1H6.07C6.56 4.49 8.49 4 12 4zM6 9V7h5v2H6zm11 0h-5V7h5v2zm-9.5 7c-.83 0-1.5-.67-1.5-1.5S6.67 13 7.5 13s1.5.67 1.5 1.5S8.33 16 7.5 16zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+              <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
             </svg>
           </div>
-          <h3>By Metro</h3>
-          <p>The DC Metro is the easiest way to navigate the city.</p>
+          <h3>By Car</h3>
+          <p>The Gaylord National is easily accessible by road:</p>
           <ul class="transport-card__list">
-            <li><strong>Mt Vernon Sq / 7th St</strong> — Green &amp; Yellow Line</li>
-            <li>2-minute walk to the Convention Center</li>
-            <li>Service from all major airports</li>
-            <li>Day passes available at all stations</li>
+            <li>From I-95/I-495: Exit 2A to MD-210 South</li>
+            <li>Valet &amp; self-parking available on-site</li>
+            <li>National Harbor exit clearly marked</li>
+            <li>GPS: 201 Waterfront St, National Harbor, MD</li>
           </ul>
         </div>
 
         <div class="transport-card reveal reveal-delay-2">
           <div class="transport-card__icon">
             <svg viewBox="0 0 24 24" width="36" height="36" fill="var(--deep-gold)" aria-hidden="true">
-              <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+              <path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2l2-2h4l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zm0 2c3.51 0 5.44.49 5.93 1H6.07C6.56 4.49 8.49 4 12 4zM6 9V7h5v2H6zm11 0h-5V7h5v2zm-9.5 7c-.83 0-1.5-.67-1.5-1.5S6.67 13 7.5 13s1.5.67 1.5 1.5S8.33 16 7.5 16zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
             </svg>
           </div>
-          <h3>By Car &amp; Parking</h3>
-          <p>Multiple parking options within walking distance:</p>
+          <h3>By Water Taxi</h3>
+          <p>The scenic route — from the DC Waterfront:</p>
           <ul class="transport-card__list">
-            <li>Convention Center Parking Garage (on-site)</li>
-            <li>SpotHero &amp; ParkWhiz app discounts</li>
-            <li>WHE Fest shuttle from partner hotels</li>
-            <li>Rideshare drop-off on 9th St NW</li>
+            <li>Potomac Riverboat service from Old Town Alexandria</li>
+            <li>Georgetown-to-National Harbor ferry (seasonal)</li>
+            <li>Drops directly at the resort's waterfront dock</li>
+            <li>A truly unforgettable arrival experience</li>
           </ul>
         </div>
 
@@ -214,27 +557,32 @@
               <path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/>
             </svg>
           </div>
-          <h3>WHE Fest Shuttle</h3>
-          <p>Complimentary shuttle service runs between all partner hotels and the convention center:</p>
+          <h3>Rideshare &amp; Taxi</h3>
+          <p>Easy rideshare access to the resort:</p>
           <ul class="transport-card__list">
-            <li>Every 20 minutes during event hours</li>
-            <li>Available to all ticket holders</li>
-            <li>Schedule provided with tickets</li>
+            <li>Uber &amp; Lyft available throughout DC area</li>
+            <li>20–25 min from downtown Washington, D.C.</li>
+            <li>Drop-off at main hotel entrance</li>
+            <li>Rideshare staging area clearly marked</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
+
+  <!-- CTA Section -->
   <section class="section section--dark text-center">
     <div class="container container--narrow">
-      <p class="section-label reveal">Any Questions?</p>
-      <h2 class="reveal reveal-delay-1">We're Here to <span class="text-shimmer">Help</span></h2>
+      <p class="section-label reveal">Ready to Join Us?</p>
+      <h2 class="reveal reveal-delay-1">Secure Your Place at <span class="text-shimmer">WHE Fest</span></h2>
       <hr class="divider divider--wide divider-reveal reveal-delay-2 mx-auto" aria-hidden="true"/>
-      <p class="reveal reveal-delay-2" style="color:var(--gray-warm); margin-bottom:2rem;">Reach out to our team for accessibility accommodations, group travel assistance, or any logistics questions.</p>
-      <div class="flex-center flex-gap reveal reveal-delay-3">
-        <a href="tickets.html" class="btn btn--glow">Get Tickets</a>
-        <a href="../index.html#signup" class="btn btn--outline">Join Email List</a>
+      <p class="reveal reveal-delay-2" style="color:var(--text-muted-on-light); margin-bottom:2rem; line-height:1.8;">
+        Book your hotel room and express your interest in volunteering, speaking, or sponsoring WHE Fest 2026 at the Gaylord National Resort.
+      </p>
+      <div class="flex-center flex-gap reveal reveal-delay-3" style="flex-wrap:wrap;">
+        <a href="https://www.marriott.com/en-us/hotels/wasgn-gaylord-national-resort-and-convention-center/overview/" target="_blank" rel="noopener" class="btn btn--glow">Book Your Room</a>
+        <a href="../index.html#signup" class="btn btn--outline">Get Involved</a>
       </div>
     </div>
   </section>

@@ -138,10 +138,17 @@ body.has-announcement-bar .nav {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 900;
   line-height: 1;
-  color: var(--soft-white);
+  color: var(--midnight-blue);
   letter-spacing: -0.02em;
   display: block;
-  text-shadow: 0 0 30px rgba(198, 167, 94, 0.2);
+  text-shadow: 0 0 20px rgba(198, 167, 94, 0.15);
+}
+
+/* On dark hero/sections, countdown numbers should be white */
+.hero .countdown__number,
+.gala-hero .countdown__number,
+[style*="background:#071"] .countdown__number {
+  color: var(--soft-white);
 }
 
 .countdown__label {
@@ -261,6 +268,24 @@ body.has-announcement-bar .nav {
 
 .site-footer__brand-name span {
   color: var(--deep-gold);
+}
+
+.site-footer__logo-link {
+  display: inline-block;
+  margin-bottom: var(--space-md);
+  text-decoration: none;
+}
+
+.site-footer__logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+  opacity: 0.92;
+  transition: opacity var(--transition-fast);
+}
+
+.site-footer__logo-link:hover .site-footer__logo-img {
+  opacity: 1;
 }
 
 .site-footer__tagline {
