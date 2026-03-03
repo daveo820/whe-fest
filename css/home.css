@@ -188,8 +188,10 @@
 
 .about__body {
   color: var(--text-muted-on-light);
+  font-size: var(--text-base);
   line-height: 1.9;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+  max-width: 60ch;
 }
 
 .about__cta-note {

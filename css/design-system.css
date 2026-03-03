@@ -53,7 +53,7 @@
   --space-xl: 3rem;
   --space-2xl: 5rem;
   --space-3xl: 8rem;
-  --section-padding: clamp(4rem, 6vw, 8rem);
+  --section-padding: clamp(5rem, 7vw, 9rem);
 
   /* Layout */
   --max-width: 1200px;
@@ -104,9 +104,19 @@ html {
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--text-on-light);
   background-color: var(--page-bg);
+}
+
+p {
+  line-height: 1.8;
+}
+
+.text-center p,
+.text-center > p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img {
@@ -238,7 +248,8 @@ h6 { font-size: var(--text-lg); }
   align-items: center;
   justify-content: center;
   gap: var(--space-sm);
-  padding: 0.85em 2.2em;
+  padding: 0.9em 2.4em;
+  min-height: 48px;
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
