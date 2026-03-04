@@ -213,6 +213,50 @@
 
     .gala-hero__scroll-cue { display: none; }
 
+    /* ---- Gala Hero Logo + Spotlight ---- */
+    .gala-hero__logo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      animation: fadeInDown 0.9s ease 0.05s forwards;
+    }
+
+    .gala-hero__spotlight {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 220px;
+      background: radial-gradient(ellipse 70% 100% at 50% 0%,
+        rgba(198,167,94,0.20) 0%,
+        rgba(198,167,94,0.06) 40%,
+        transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .gala-hero__logo {
+      position: relative;
+      z-index: 1;
+      width: min(300px, 60vw);
+      height: auto;
+      display: block;
+      filter:
+        brightness(0) invert(1)
+        drop-shadow(0 0 24px rgba(198,167,94,0.45))
+        drop-shadow(0 0 48px rgba(198,167,94,0.18));
+    }
+
+    /* ---- Gala Confetti Canvas ---- */
+    .gala-hero__confetti-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     /* ---- Gala Sections ---- */
     .gala-section {
       padding: var(--section-padding) 0;
@@ -588,6 +632,7 @@
   <section class="gala-hero" id="gala-hero" aria-label="Gala hero">
     <div class="gala-hero__bg"></div>
     <div class="gala-hero__dust" aria-hidden="true"></div>
+    <canvas class="gala-hero__confetti-canvas" id="galaConfetti" aria-hidden="true"></canvas>
 
     <!-- Star field -->
     <div class="gala-hero__stars" aria-hidden="true">
@@ -606,6 +651,13 @@
     </div>
 
     <div class="gala-hero__content">
+
+      <!-- WHE Fest Logo with spotlight glow -->
+      <div class="gala-hero__logo-wrap">
+        <div class="gala-hero__spotlight" aria-hidden="true"></div>
+        <img src="../assets/logo-main.png" alt="WHE Fest" class="gala-hero__logo" />
+      </div>
+
       <!-- Stars ornament -->
       <div style="margin-bottom: var(--space-md); opacity:0; animation: fadeInDown 0.8s ease 0.2s forwards;" aria-hidden="true">
         <svg viewBox="0 0 220 18" width="220" height="18" style="display:block;margin:0 auto;">
@@ -1053,5 +1105,125 @@
 
   <script src="../js/main.js" defer></script>
   <script src="../js/components.js" defer></script>
+
+  <!-- Gala hero gold confetti — plays once, subtle, fades out -->
+  <script>
+  (function () {
+    'use strict';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var canvas = document.getElementById('galaConfetti');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var DURATION   = 3800;
+    var FADE_START = 3000;
+    var COUNT      = 48;
+    var LANE_PCT   = 0.17;
+    var COLORS     = ['#C6A75E', '#A8893E', '#D4BA78', '#E8D5A0', '#B8953A'];
+    var startTime  = null;
+    var particles  = [];
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function makeParticle(side) {
+      var w     = canvas.width;
+      var laneW = w * LANE_PCT;
+      var x     = side === 'left'
+        ? Math.random() * laneW
+        : w - laneW + Math.random() * laneW;
+      var types = ['rect', 'circle', 'diamond'];
+      var type  = types[Math.floor(Math.random() * types.length)];
+      var size  = 4 + Math.random() * 8;
+      return {
+        x: x,
+        y: -(Math.random() * canvas.height * 0.6 + 10),
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: 0.7 + Math.random() * 0.7,
+        rot:  Math.random() * Math.PI * 2,
+        rotV: (Math.random() - 0.5) * 0.04,
+        size: size,
+        color:   COLORS[Math.floor(Math.random() * COLORS.length)],
+        opacity: 0.20 + Math.random() * 0.22,
+        type: type,
+        side: side
+      };
+    }
+
+    function initParticles() {
+      particles = [];
+      var half = Math.floor(COUNT / 2);
+      for (var i = 0; i < half; i++)         particles.push(makeParticle('left'));
+      for (var j = 0; j < COUNT - half; j++) particles.push(makeParticle('right'));
+    }
+
+    function drawParticle(p, alpha) {
+      ctx.save();
+      ctx.globalAlpha = p.opacity * alpha;
+      ctx.fillStyle   = p.color;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      var s = p.size;
+      if (p.type === 'rect') {
+        ctx.fillRect(-s / 2, -s * 0.22, s, s * 0.44);
+      } else if (p.type === 'circle') {
+        ctx.beginPath();
+        ctx.arc(0, 0, s * 0.32, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.moveTo(0, -s * 0.5);
+        ctx.lineTo(s * 0.32, 0);
+        ctx.lineTo(0,  s * 0.5);
+        ctx.lineTo(-s * 0.32, 0);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    function animate(ts) {
+      if (!startTime) startTime = ts;
+      var elapsed = ts - startTime;
+      if (elapsed > DURATION) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.style.display = 'none';
+        return;
+      }
+      var alpha = elapsed > FADE_START
+        ? Math.max(0, 1 - (elapsed - FADE_START) / (DURATION - FADE_START))
+        : 1;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x   += p.vx;
+        p.y   += p.vy;
+        p.rot += p.rotV;
+        if (p.y > canvas.height + 20 && elapsed < FADE_START) {
+          var fresh = makeParticle(p.side);
+          fresh.y = -(Math.random() * 30 + 10);
+          particles[i] = fresh;
+          p = fresh;
+        }
+        drawParticle(p, alpha);
+      }
+      requestAnimationFrame(animate);
+    }
+
+    function start() {
+      resize();
+      initParticles();
+      requestAnimationFrame(animate);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
+    window.addEventListener('resize', resize, { passive: true });
+  }());
+  </script>
 </body>
 </html>

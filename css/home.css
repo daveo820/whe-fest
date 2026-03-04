@@ -16,13 +16,22 @@
 .hero__bg {
   position: absolute;
   inset: 0;
+  /* Dark navy band at top (nav area) → fades to warm cream below */
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(198,167,94,0.13) 0%, transparent 60%),
+    linear-gradient(180deg,
+      rgba(7,20,34,1)    0%,
+      rgba(7,20,34,0.92) 9%,
+      rgba(7,20,34,0)    26%
+    ),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(198,167,94,0.10) 0%, transparent 60%),
     linear-gradient(180deg, #FFFDF9 0%, var(--page-bg) 35%, var(--section-light) 100%);
 }
 
 .hero__canvas {
-  display: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero__content {
@@ -177,48 +186,6 @@
 .hero__scroll-cue span:nth-child(2) { animation-delay: 0.2s; }
 .hero__scroll-cue span:nth-child(3) { animation-delay: 0.4s; }
 
-/* ---------- Gold Confetti ---------- */
-.hero__confetti {
-  position: absolute;
-  top: var(--space-3xl);
-  pointer-events: none;
-  opacity: 0;
-}
-
-.hero__confetti--left {
-  left: 0;
-  animation:
-    confettiReveal 0.9s ease 0.6s forwards,
-    confettiDrift1 5.5s ease-in-out 1.5s infinite;
-}
-
-.hero__confetti--right {
-  right: 0;
-  animation:
-    confettiReveal 0.9s ease 0.8s forwards,
-    confettiDrift2 6.5s ease-in-out 1.7s infinite;
-}
-
-@keyframes confettiReveal {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes confettiDrift1 {
-  0%, 100% { transform: translateY(0)    rotate(0deg);    }
-  50%       { transform: translateY(-9px) rotate(1.8deg);  }
-}
-
-@keyframes confettiDrift2 {
-  0%, 100% { transform: translateY(0)    rotate(0deg);    }
-  50%       { transform: translateY(-7px) rotate(-1.5deg); }
-}
-
-/* Hide confetti on screens too narrow to show it gracefully */
-@media (max-width: 900px) {
-  .hero__confetti { display: none; }
-}
-
 /* ---- Light-hero overrides (home page) ---- */
 
 /* Section labels use gold-dark (#A8893E, ~4.2:1 on cream) instead of deep-gold */
@@ -236,15 +203,6 @@
 .hero .btn--outline {
   color: var(--midnight-blue) !important;
   border-color: var(--deep-gold);
-}
-
-/* Home page nav: dark links over light hero background */
-.page-home .nav .nav__link {
-  color: var(--midnight-blue);
-}
-
-.page-home .nav .nav__toggle span {
-  background: var(--midnight-blue);
 }
 
 /* ---------- About ---------- */
