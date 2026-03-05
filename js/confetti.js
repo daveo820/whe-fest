@@ -1,9 +1,8 @@
 /* ============================================================
    WHE Fest — Hero Gold Confetti Streams
    Two continuous streams flanking the large centre logo.
-   Starts immediately with fallback zones, then re-reads the
-   logo's real position 1.7 s after load (after heroTitleIn
-   animation finishes: 0.25 s delay + 1.2 s duration + buffer).
+   Zones are derived from CSS math (no DOM timing dependency)
+   so confetti starts the instant the page opens.
    Hidden on viewports narrower than 900 px.
    Respects prefers-reduced-motion.
    ============================================================ */
@@ -19,25 +18,24 @@
   const COLORS = ['#C6A75E','#D4BA78','#E8D5A0','#F0E4B8','#A8893E','#B8A060'];
   const PER_STREAM = 55;
 
-  let leftEdge  = 0.08;   // fraction of canvas width — updated after animation
-  let rightEdge = 0.92;
+  let leftEdge  = 0.08;
+  let rightEdge = 0.88;
   let animId    = null;
   let particles = [];
   let running   = false;
 
-  /* ── Zone calculation (reads actual rendered position) ──── */
-  function readLogoZone() {
-    const logo = document.querySelector('.hero__logo-img');
-    if (!logo) return;
+  /* ── Zone calculation ───────────────────────────────────────
+     Logo CSS: width = min(860px, 92vw), transform = translateX(-8%)
+     +120 px right padding accounts for calligraphic Fest overflow. */
+  function calcZones() {
+    const vw          = canvas.width;
+    const logoW       = Math.min(860, vw * 0.92);
+    const visualShift = logoW * 0.08;
+    const visualLeft  = (vw - logoW) / 2 - visualShift;
+    const visualRight = visualLeft + logoW;
 
-    const rect = logo.getBoundingClientRect();
-    const cw   = canvas.offsetWidth;
-    if (cw < 1) return;
-
-    /* Extra right padding accounts for calligraphic overflow of
-       the Fest script extending beyond the img element's CSS box */
-    leftEdge  = Math.max(0,    (rect.left  - 20) / cw);
-    rightEdge = Math.min(0.99, (rect.right + 100) / cw);
+    leftEdge  = Math.max(0,    (visualLeft  - 20)  / vw);
+    rightEdge = Math.min(0.99, (visualRight + 120) / vw);
   }
 
   /* ── Particle factory ───────────────────────────────────── */
@@ -96,7 +94,6 @@
   function frame() {
     if (!running) return;
 
-    /* Hide on narrow viewports */
     if (canvas.width < 900) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       animId = requestAnimationFrame(frame);
@@ -125,31 +122,18 @@
   function resize() {
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    readLogoZone();
+    calcZones();
   }
 
   /* ── Bootstrap ──────────────────────────────────────────── */
   function start() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    /* Start immediately with broad fallback zones so confetti
-       is visible from the first frame */
-    leftEdge  = 0.08;
-    rightEdge = 0.92;
+    resize();
     initParticles();
     running = true;
     frame();
-
-    /* After heroTitleIn finishes (0.25 s delay + 1.2 s duration),
-       re-read the logo's true rendered position and re-spread */
-    setTimeout(function () {
-      readLogoZone();
-      initParticles();
-    }, 1700);
   }
 
-  window.addEventListener('load', start);
+  document.addEventListener('DOMContentLoaded', start);
 
   window.addEventListener('resize', function () {
     cancelAnimationFrame(animId);
