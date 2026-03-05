@@ -188,21 +188,22 @@
 
 /* ---- Homepage nav — always dark (stays navy on scroll) ---- */
 .page-home .nav {
-  background: rgba(7,20,34,0.92);
+  background: rgba(7,20,34,0.92) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
 .page-home .nav.scrolled {
-  background: rgba(7,20,34,0.97);
+  background: rgba(7,20,34,0.97) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: rgba(198,167,94,0.15);
+  border-bottom-color: rgba(198,167,94,0.15) !important;
 }
 
-/* Scrolled state restores light link color override — keep white */
+/* Scrolled state: keep links white (overrides .nav.scrolled .nav__link rule) */
+.page-home .nav .nav__link,
 .page-home .nav.scrolled .nav__link {
-  color: var(--soft-white);
+  color: var(--soft-white) !important;
 }
 
 /* ---- Light-hero overrides (home page) ---- */
