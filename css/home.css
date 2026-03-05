@@ -58,9 +58,11 @@
 }
 
 .hero__label {
-  margin-bottom: var(--space-lg);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-sm);
   opacity: 0;
-  animation: fadeInDown 0.8s ease 1.05s forwards;
+  animation: fadeInDown 0.8s ease 0.15s forwards;
 }
 
 .hero__title {
