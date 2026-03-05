@@ -1,8 +1,9 @@
 /* ============================================================
    WHE Fest — Hero Gold Confetti Streams
    Two continuous streams flanking the large centre logo.
-   Zone boundaries are calculated from the logo's known CSS
-   (min(860px,92vw) + translateX(-8%)) so timing is never an issue.
+   Starts immediately with fallback zones, then re-reads the
+   logo's real position 1.7 s after load (after heroTitleIn
+   animation finishes: 0.25 s delay + 1.2 s duration + buffer).
    Hidden on viewports narrower than 900 px.
    Respects prefers-reduced-motion.
    ============================================================ */
@@ -18,26 +19,25 @@
   const COLORS = ['#C6A75E','#D4BA78','#E8D5A0','#F0E4B8','#A8893E','#B8A060'];
   const PER_STREAM = 55;
 
-  let leftEdge  = 0.18;   // fraction of canvas width — recalculated on resize
-  let rightEdge = 0.82;
+  let leftEdge  = 0.08;   // fraction of canvas width — updated after animation
+  let rightEdge = 0.92;
   let animId    = null;
   let particles = [];
   let running   = false;
 
-  /* ── Zone calculation (pure CSS math, no DOM timing) ─────── */
-  function calcZones() {
-    const vw = canvas.width;
+  /* ── Zone calculation (reads actual rendered position) ──── */
+  function readLogoZone() {
+    const logo = document.querySelector('.hero__logo-img');
+    if (!logo) return;
 
-    /* Logo CSS: width = min(860px, 92vw)
-       Hero content is centered, so logo layout box is centered too.
-       CSS transform: translateX(-8%) shifts visual image left by 8% of logo width. */
-    const logoW       = Math.min(860, vw * 0.92);
-    const visualShift = logoW * 0.08;                  // translateX(-8%)
-    const visualLeft  = (vw - logoW) / 2 - visualShift;
-    const visualRight = visualLeft + logoW;
+    const rect = logo.getBoundingClientRect();
+    const cw   = canvas.offsetWidth;
+    if (cw < 1) return;
 
-    leftEdge  = Math.max(0,    (visualLeft  - 16) / vw);
-    rightEdge = Math.min(0.99, (visualRight + 16) / vw);
+    /* Extra right padding accounts for calligraphic overflow of
+       the Fest script extending beyond the img element's CSS box */
+    leftEdge  = Math.max(0,    (rect.left  - 20) / cw);
+    rightEdge = Math.min(0.99, (rect.right + 100) / cw);
   }
 
   /* ── Particle factory ───────────────────────────────────── */
@@ -125,15 +125,28 @@
   function resize() {
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    calcZones();
+    readLogoZone();
   }
 
   /* ── Bootstrap ──────────────────────────────────────────── */
   function start() {
-    resize();
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    /* Start immediately with broad fallback zones so confetti
+       is visible from the first frame */
+    leftEdge  = 0.08;
+    rightEdge = 0.92;
     initParticles();
     running = true;
     frame();
+
+    /* After heroTitleIn finishes (0.25 s delay + 1.2 s duration),
+       re-read the logo's true rendered position and re-spread */
+    setTimeout(function () {
+      readLogoZone();
+      initParticles();
+    }, 1700);
   }
 
   window.addEventListener('load', start);
@@ -141,7 +154,6 @@
   window.addEventListener('resize', function () {
     cancelAnimationFrame(animId);
     resize();
-    /* Re-spread particles into new zone boundaries */
     initParticles();
     frame();
   }, { passive: true });
