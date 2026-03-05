@@ -44,8 +44,11 @@
         var isCircle  = Math.random() < 0.45;
         var size      = 5 + Math.random() * 7;          /* px */
         var color     = COLORS[Math.floor(Math.random() * COLORS.length)];
-        /* Full width across the top */
-        var x = Math.random() * 100;
+        /* Left column: 0–11 vw  |  Right column: 89–100 vw */
+        var inLeft    = i < COUNT / 2;
+        var x         = inLeft
+                          ? Math.random() * 11
+                          : 89 + Math.random() * 11;
         var delay     = Math.random() * 1.5;             /* s   */
         var duration  = 3 + Math.random() * 2;           /* s   */
 
