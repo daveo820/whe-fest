@@ -1,8 +1,9 @@
 /* ============================================================
    WHE Fest — Hero Gold Confetti Streams
    Two continuous streams flanking the large centre logo.
-   Stream zones are measured from the real logo element so they
-   stay tight regardless of viewport width.
+   Zone boundaries are calculated from the logo's known CSS
+   (min(860px,92vw) + translateX(-8%)) so timing is never an issue.
+   Hidden on viewports narrower than 900 px.
    Respects prefers-reduced-motion.
    ============================================================ */
 (function () {
@@ -13,52 +14,51 @@
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
 
-  const ctx     = canvas.getContext('2d');
-  const COLORS  = ['#C6A75E','#D4BA78','#E8D5A0','#F0E4B8','#A8893E','#B8A060'];
-  const PER_STREAM = 55;  // particles per side
+  const ctx    = canvas.getContext('2d');
+  const COLORS = ['#C6A75E','#D4BA78','#E8D5A0','#F0E4B8','#A8893E','#B8A060'];
+  const PER_STREAM = 55;
 
-  /* Stream boundary fractions (0-1) relative to canvas width.
-     Recalculated whenever the logo element reports its position. */
-  let leftEdge  = 0;   // canvas left   → this x
-  let rightEdge = 1;   // this x        → canvas right
+  let leftEdge  = 0.18;   // fraction of canvas width — recalculated on resize
+  let rightEdge = 0.82;
   let animId    = null;
   let particles = [];
+  let running   = false;
 
-  /* ── Zone detection ─────────────────────────────────────── */
-  function readLogoZone() {
-    const logo = document.querySelector('.hero__logo-img');
-    if (!logo || !canvas.width) return;
+  /* ── Zone calculation (pure CSS math, no DOM timing) ─────── */
+  function calcZones() {
+    const vw = canvas.width;
 
-    const lr = logo.getBoundingClientRect();
-    const cr = canvas.getBoundingClientRect();
-    const w  = canvas.width;
+    /* Logo CSS: width = min(860px, 92vw)
+       Hero content is centered, so logo layout box is centered too.
+       CSS transform: translateX(-8%) shifts visual image left by 8% of logo width. */
+    const logoW       = Math.min(860, vw * 0.92);
+    const visualShift = logoW * 0.08;                  // translateX(-8%)
+    const visualLeft  = (vw - logoW) / 2 - visualShift;
+    const visualRight = visualLeft + logoW;
 
-    /* 12px clearance gap between stream and logo edge */
-    leftEdge  = Math.max(0, (lr.left  - cr.left  - 12) / w);
-    rightEdge = Math.min(1, (lr.right - cr.left  + 12) / w);
+    leftEdge  = Math.max(0,    (visualLeft  - 16) / vw);
+    rightEdge = Math.min(0.99, (visualRight + 16) / vw);
   }
 
   /* ── Particle factory ───────────────────────────────────── */
   function makeParticle(side, spreadY) {
-    const isLeft   = side === 'left';
-    const xMin     = isLeft ? 0        : rightEdge;
-    const xMax     = isLeft ? leftEdge : 1;
-    const xRange   = Math.max(xMax - xMin, 0.01);
+    const isLeft = side === 'left';
+    const xMin   = isLeft ? 0        : rightEdge;
+    const xMax   = isLeft ? leftEdge : 1;
+    const range  = Math.max(xMax - xMin, 0.01);
 
-    /* Ribbon shape — wide & thin, tumbles realistically */
     const w = 7  + Math.random() * 9;
     const h = 2.5 + Math.random() * 3;
 
     return {
-      x:    (xMin + Math.random() * xRange) * canvas.width,
+      x:    (xMin + Math.random() * range) * canvas.width,
       y:    spreadY !== undefined
-              ? -Math.random() * canvas.height      // initial fill spread
-              : -(Math.random() * 60 + 10),         // recycle: just off top
+              ? -Math.random() * canvas.height
+              : -(Math.random() * 60 + 10),
       vx:   (Math.random() - 0.5) * 0.6,
       vy:   1.4 + Math.random() * 1.8,
       rot:  Math.random() * Math.PI * 2,
       rotV: (Math.random() < 0.5 ? 1 : -1) * (0.04 + Math.random() * 0.06),
-      /* Sine drift — gives the lazy swirling fall */
       phase: Math.random() * Math.PI * 2,
       freq:  0.012 + Math.random() * 0.012,
       amp:   0.5   + Math.random() * 1.0,
@@ -69,7 +69,6 @@
     };
   }
 
-  /* ── Init ───────────────────────────────────────────────── */
   function initParticles() {
     particles = [];
     for (let i = 0; i < PER_STREAM; i++) {
@@ -78,7 +77,7 @@
     }
   }
 
-  /* ── Draw one piece ─────────────────────────────────────── */
+  /* ── Draw ───────────────────────────────────────────────── */
   function drawPiece(p) {
     ctx.save();
     ctx.globalAlpha = p.opacity;
@@ -86,7 +85,7 @@
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
     ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-    /* Thin highlight strip — gives metallic depth */
+    /* metallic highlight */
     ctx.globalAlpha = p.opacity * 0.55;
     ctx.fillStyle   = '#FFF9EC';
     ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * 0.28);
@@ -95,19 +94,25 @@
 
   /* ── Frame ──────────────────────────────────────────────── */
   function frame() {
+    if (!running) return;
+
+    /* Hide on narrow viewports */
+    if (canvas.width < 900) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      animId = requestAnimationFrame(frame);
+      return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-
       p.x   += p.vx + Math.sin(p.y * p.freq + p.phase) * p.amp;
       p.y   += p.vy;
       p.rot += p.rotV;
 
       if (p.y > canvas.height + 20) {
-        /* Recycle back to top of the same stream */
-        const next = makeParticle(p.side);
-        Object.assign(p, next);
+        Object.assign(p, makeParticle(p.side));
       }
 
       drawPiece(p);
@@ -120,22 +125,24 @@
   function resize() {
     canvas.width  = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    readLogoZone();
+    calcZones();
   }
 
   /* ── Bootstrap ──────────────────────────────────────────── */
   function start() {
     resize();
     initParticles();
+    running = true;
     frame();
   }
 
-  /* Wait for everything (incl. logo image) to be laid out */
   window.addEventListener('load', start);
 
   window.addEventListener('resize', function () {
     cancelAnimationFrame(animId);
     resize();
+    /* Re-spread particles into new zone boundaries */
+    initParticles();
     frame();
   }, { passive: true });
 }());
