@@ -227,13 +227,14 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 560px;
-      height: 560px;
+      transform: translate(-50%, -50%);
+      width: 580px;
+      height: 580px;
       border-radius: 50%;
       background: radial-gradient(circle at 50% 50%,
-        rgba(255,255,255,0.13)  0%,
-        rgba(255,255,255,0.05) 28%,
-        rgba(198,167,94,0.03)  52%,
+        rgba(255,255,255,0.32)  0%,
+        rgba(255,255,255,0.14) 25%,
+        rgba(198,167,94,0.08)  50%,
         transparent            68%);
       pointer-events: none;
       z-index: 0;
@@ -241,8 +242,8 @@
     }
 
     @keyframes spotlightPulse {
-      0%, 100% { opacity: 0.72; transform: translate(-50%, -50%) scale(1);    }
-      50%       { opacity: 1;    transform: translate(-50%, -50%) scale(1.10); }
+      0%, 100% { opacity: 0.80; transform: translate(-50%, -50%) scale(1);    }
+      50%       { opacity: 1;    transform: translate(-50%, -50%) scale(1.12); }
     }
 
     .gala-hero__logo {
