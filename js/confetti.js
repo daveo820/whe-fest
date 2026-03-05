@@ -1,10 +1,10 @@
 /* ============================================================
-   WHE Fest — Hero Gold Confetti Streams
-   Two continuous streams flanking the large centre logo.
-   Zones are derived from CSS math (no DOM timing dependency)
-   so confetti starts the instant the page opens.
-   Hidden on viewports narrower than 900 px.
+   WHE Fest — Hero Gold Confetti
+   Two narrow columns: far-left and far-right margins only.
+   Plays once on page load, lasts 4 s, fades out the last 1 s.
+   Canvas-based (GPU-accelerated, no DOM reflow).
    Respects prefers-reduced-motion.
+   Hidden on viewports narrower than 600 px.
    ============================================================ */
 (function () {
   'use strict';
@@ -15,130 +15,131 @@
   if (!canvas) return;
 
   const ctx    = canvas.getContext('2d');
-  const COLORS = ['#C6A75E','#D4BA78','#E8D5A0','#F0E4B8','#A8893E','#B8A060'];
-  const PER_STREAM = 55;
+  const COLORS = ['#C6A75E', '#D4BA78', '#E8D5A0', '#B8A060', '#A8893E', '#F0E4B8'];
 
-  let leftEdge  = 0.08;
-  let rightEdge = 0.88;
-  let animId    = null;
+  const DURATION   = 4200;  /* ms — total animation length          */
+  const FADE_AT    = 3000;  /* ms — fade-out begins here            */
+
   let particles = [];
-  let running   = false;
+  let startTime = null;
+  let animId    = null;
+  let colW      = 120;     /* column width in px — set in resize() */
 
-  /* ── Zone calculation ───────────────────────────────────────
-     Logo CSS: width = min(860px, 92vw), transform = translateX(-8%)
-     +120 px right padding accounts for calligraphic Fest overflow. */
-  function calcZones() {
-    const vw          = canvas.width;
-    const logoW       = Math.min(860, vw * 0.92);
-    const visualShift = logoW * 0.08;
-    const visualLeft  = (vw - logoW) / 2 - visualShift;
-    const visualRight = visualLeft + logoW;
-
-    leftEdge  = Math.max(0,    (visualLeft  - 20)  / vw);
-    rightEdge = Math.min(0.99, (visualRight + 120) / vw);
+  /* ── Sizing ─────────────────────────────────────────────── */
+  function setup() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    /* Column: 9 % of viewport, clamped 70–140 px */
+    colW = Math.max(70, Math.min(140, canvas.width * 0.09));
   }
 
   /* ── Particle factory ───────────────────────────────────── */
-  function makeParticle(side, spreadY) {
-    const isLeft = side === 'left';
-    const xMin   = isLeft ? 0        : rightEdge;
-    const xMax   = isLeft ? leftEdge : 1;
-    const range  = Math.max(xMax - xMin, 0.01);
-
-    const w = 7  + Math.random() * 9;
-    const h = 2.5 + Math.random() * 3;
+  function makeParticle(side) {
+    const isLeft   = side === 'left';
+    const xMin     = isLeft ? 0 : canvas.width - colW;
+    const xMax     = isLeft ? colW : canvas.width;
+    const isCircle = Math.random() < 0.45;     /* 45 % circles, 55 % rects */
 
     return {
-      x:    (xMin + Math.random() * range) * canvas.width,
-      y:    spreadY !== undefined
-              ? -Math.random() * canvas.height
-              : -(Math.random() * 60 + 10),
-      vx:   (Math.random() - 0.5) * 0.6,
-      vy:   1.4 + Math.random() * 1.8,
+      x:    xMin + Math.random() * (xMax - xMin),
+      /* stagger entry — spread particles 0 → 350 px above canvas */
+      y:    -(Math.random() * 350),
+      vx:   (Math.random() - 0.5) * 0.35,
+      vy:   1.5 + Math.random() * 2.0,
       rot:  Math.random() * Math.PI * 2,
-      rotV: (Math.random() < 0.5 ? 1 : -1) * (0.04 + Math.random() * 0.06),
-      phase: Math.random() * Math.PI * 2,
-      freq:  0.012 + Math.random() * 0.012,
-      amp:   0.5   + Math.random() * 1.0,
-      w, h,
-      color:   COLORS[Math.floor(Math.random() * COLORS.length)],
-      opacity: 0.60 + Math.random() * 0.40,
-      side,
+      rotV: (Math.random() < 0.5 ? 1 : -1) * (0.02 + Math.random() * 0.04),
+      color:       COLORS[Math.floor(Math.random() * COLORS.length)],
+      baseOpacity: 0.65 + Math.random() * 0.35,
+      isCircle,
+      r:  isCircle ? 2.5 + Math.random() * 2   : 0,
+      w:  isCircle ? 0   : 5 + Math.random() * 5,
+      h:  isCircle ? 0   : 2 + Math.random() * 2,
+      xMin, xMax,   /* column bounds for soft clamping */
     };
   }
 
   function initParticles() {
     particles = [];
-    for (let i = 0; i < PER_STREAM; i++) {
-      particles.push(makeParticle('left',  true));
-      particles.push(makeParticle('right', true));
+    const mobile   = canvas.width < 768;
+    const perSide  = mobile ? 22 : 40;
+
+    for (let i = 0; i < perSide; i++) {
+      particles.push(makeParticle('left'));
+      particles.push(makeParticle('right'));
     }
   }
 
-  /* ── Draw ───────────────────────────────────────────────── */
-  function drawPiece(p) {
+  /* ── Draw one piece ─────────────────────────────────────── */
+  function drawPiece(p, fade) {
     ctx.save();
-    ctx.globalAlpha = p.opacity;
+    ctx.globalAlpha = p.baseOpacity * fade;
     ctx.fillStyle   = p.color;
     ctx.translate(p.x, p.y);
     ctx.rotate(p.rot);
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-    /* metallic highlight */
-    ctx.globalAlpha = p.opacity * 0.55;
-    ctx.fillStyle   = '#FFF9EC';
-    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * 0.28);
+
+    if (p.isCircle) {
+      ctx.beginPath();
+      ctx.arc(0, 0, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    } else {
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      /* subtle metallic highlight strip */
+      ctx.globalAlpha = p.baseOpacity * fade * 0.45;
+      ctx.fillStyle   = '#FFF9EC';
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * 0.30);
+    }
+
     ctx.restore();
   }
 
-  /* ── Frame ──────────────────────────────────────────────── */
-  function frame() {
-    if (!running) return;
+  /* ── Animation loop ─────────────────────────────────────── */
+  function frame(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed = ts - startTime;
 
-    if (canvas.width < 900) {
+    if (elapsed >= DURATION) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      animId = requestAnimationFrame(frame);
-      return;
+      return;   /* one-shot: stop without scheduling next frame */
     }
+
+    /* Global fade multiplier: 1.0 → 0 over the last second */
+    const fade = elapsed < FADE_AT
+      ? 1.0
+      : 1.0 - (elapsed - FADE_AT) / (DURATION - FADE_AT);
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      p.x   += p.vx + Math.sin(p.y * p.freq + p.phase) * p.amp;
+
       p.y   += p.vy;
+      p.x   += p.vx;
       p.rot += p.rotV;
 
-      if (p.y > canvas.height + 20) {
-        Object.assign(p, makeParticle(p.side));
-      }
+      /* Soft horizontal clamp — bounce gently off column walls */
+      if (p.x < p.xMin) { p.x = p.xMin; p.vx = Math.abs(p.vx) * 0.6; }
+      if (p.x > p.xMax) { p.x = p.xMax; p.vx = -Math.abs(p.vx) * 0.6; }
 
-      drawPiece(p);
+      drawPiece(p, fade);
     }
 
     animId = requestAnimationFrame(frame);
   }
 
-  /* ── Resize ─────────────────────────────────────────────── */
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    calcZones();
-  }
-
-  /* ── Bootstrap ──────────────────────────────────────────── */
+  /* ── Start ──────────────────────────────────────────────── */
   function start() {
-    resize();
+    setup();
+    if (canvas.width < 600) return;   /* skip on very narrow viewports */
     initParticles();
-    running = true;
-    frame();
+    startTime = null;
+    animId    = requestAnimationFrame(frame);
   }
 
   document.addEventListener('DOMContentLoaded', start);
 
+  /* Resize only redraws dimensions — animation already ran or is running */
   window.addEventListener('resize', function () {
     cancelAnimationFrame(animId);
-    resize();
-    initParticles();
-    frame();
+    /* Don't restart — one-shot animation plays on page open only */
   }, { passive: true });
 }());

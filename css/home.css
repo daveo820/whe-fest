@@ -18,6 +18,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 1;
+  will-change: transform;
 }
 
 .hero__bg {
@@ -58,14 +59,6 @@
   height: auto;
 }
 
-.hero__label {
-  font-size: 0.65rem;
-  letter-spacing: 0.3em;
-  margin-top: var(--space-2xl);
-  margin-bottom: var(--space-sm);
-  opacity: 0;
-  animation: fadeInDown 0.8s ease 0.15s forwards;
-}
 
 .hero__title {
   font-family: var(--font-body);
