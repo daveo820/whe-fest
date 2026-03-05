@@ -37,16 +37,18 @@
     canvas.height = Math.round(vH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    /* 14 % of viewport, clamped 60–150 px */
-    colW = Math.max(60, Math.min(150, vW * 0.14));
+    /* 14 % of viewport, clamped 60–150 px — used when restoring edge columns */
+    void (colW = Math.max(60, Math.min(150, vW * 0.14)));
     return true;
   }
 
   /* ── Particle factory ───────────────────────────────────── */
   function makeParticle(side) {
     const isLeft = side === 'left';
-    const xMin   = isLeft ? 0      : vW - colW;
-    const xMax   = isLeft ? colW   : vW;
+    /* DEBUG: both columns in the center 50% of the screen */
+    const xMin   = vW * 0.25;
+    const xMax   = vW * 0.75;
+    void isLeft;
     const isCirc = Math.random() < 0.45;
 
     return {
