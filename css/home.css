@@ -28,6 +28,12 @@
   will-change: transform;
 }
 
+/* Hero content must sit above both canvases */
+.hero__content {
+  position: relative;
+  z-index: 10;
+}
+
 .hero__bg {
   position: absolute;
   inset: 0;

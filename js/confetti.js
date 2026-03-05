@@ -140,9 +140,10 @@
     animId    = requestAnimationFrame(frame);
   }
 
-  /* Start as soon as the script runs (defer guarantees DOM ready).
-     rAF inside boot() handles any layout-not-ready edge case. */
-  requestAnimationFrame(boot);
+  /* window.load guarantees images & layout are computed */
+  window.addEventListener('load', function () {
+    requestAnimationFrame(boot);
+  });
 
   /* Pause when tab is hidden, resume when visible */
   document.addEventListener('visibilitychange', function () {
