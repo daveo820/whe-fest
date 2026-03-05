@@ -219,22 +219,30 @@
       display: inline-block;
       margin-bottom: var(--space-lg);
       opacity: 0;
+      overflow: visible;
       animation: fadeInDown 0.9s ease 0.05s forwards;
     }
 
     .gala-hero__spotlight {
       position: absolute;
-      top: -70px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 340px;
-      height: 220px;
-      background: radial-gradient(ellipse 70% 100% at 50% 0%,
-        rgba(198,167,94,0.20) 0%,
-        rgba(198,167,94,0.06) 40%,
-        transparent 70%);
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 50%,
+        rgba(255,255,255,0.13)  0%,
+        rgba(255,255,255,0.05) 28%,
+        rgba(198,167,94,0.03)  52%,
+        transparent            68%);
       pointer-events: none;
       z-index: 0;
+      animation: spotlightPulse 3.8s ease-in-out infinite;
+    }
+
+    @keyframes spotlightPulse {
+      0%, 100% { opacity: 0.72; transform: translate(-50%, -50%) scale(1);    }
+      50%       { opacity: 1;    transform: translate(-50%, -50%) scale(1.10); }
     }
 
     .gala-hero__logo {
