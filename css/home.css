@@ -27,12 +27,6 @@
     linear-gradient(180deg, #FFFDF9 0%, var(--page-bg) 35%, var(--section-light) 100%);
 }
 
-.hero__canvas {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-}
 
 .hero__content {
   position: relative;
