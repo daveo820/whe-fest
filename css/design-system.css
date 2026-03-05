@@ -408,19 +408,21 @@ h6 { font-size: var(--text-lg); }
   z-index: 1000;
   padding: var(--space-md) 0;
   transition: all var(--transition-base);
-  background: transparent;
+  background: rgba(7,20,34,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .nav.scrolled {
-  background: rgba(250,247,240,0.95);
+  background: rgba(7,20,34,0.97);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--border-on-light);
+  border-bottom: 1px solid rgba(198,167,94,0.15);
 }
 
 .nav.scrolled .nav__link {
-  color: var(--text-on-light);
+  color: var(--soft-white);
 }
 
 .nav.scrolled .nav__link:hover {
