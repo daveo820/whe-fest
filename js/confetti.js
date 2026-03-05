@@ -1,9 +1,8 @@
 /* ============================================================
-   WHE Fest — Hero Gold Confetti
-   Two narrow columns: far-left and far-right margins only.
-   Plays once on page open for 5 s, fades the final 1.5 s.
-   Uses its own canvas (#confettiCanvas) — no conflict with
-   the hero-animation (#heroCanvas).
+   WHE Fest — Hero Gold Confetti (DOM-based)
+   Creates absolutely-positioned div elements inside the hero
+   section. CSS animations handle the fall + fade.
+   No canvas dependency — guaranteed to render.
    Respects prefers-reduced-motion.
    ============================================================ */
 (function () {
@@ -11,149 +10,71 @@
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const canvas = document.getElementById('confettiCanvas');
-  if (!canvas) return;
+  var COLORS = ['#C6A75E', '#D4BA78', '#E8D5A0', '#B8A060', '#A8893E', '#F0E4B8'];
+  var COUNT   = 80;   /* total pieces */
 
-  const ctx    = canvas.getContext('2d');
-  const COLORS = ['#C6A75E', '#D4BA78', '#E8D5A0', '#B8A060', '#A8893E', '#F0E4B8'];
+  /* Inject keyframe animation once */
+  var style = document.createElement('style');
+  style.textContent = [
+    '@keyframes whe-fall {',
+    '  0%   { transform: translateY(0)      rotate(0deg);   opacity: 1;   }',
+    '  85%  { opacity: 1; }',
+    '  100% { transform: translateY(110vh)  rotate(540deg); opacity: 0;   }',
+    '}'
+  ].join('\n');
+  document.head.appendChild(style);
 
-  const DURATION = 5000;   /* ms total           */
-  const FADE_AT  = 3500;   /* ms fade-out starts */
+  function launch() {
+    /* Wrap — fixed, full-screen, above everything, pointer-safe */
+    var wrap = document.createElement('div');
+    wrap.style.cssText = [
+      'position:fixed',
+      'top:0',
+      'left:0',
+      'width:100%',
+      'height:100%',
+      'pointer-events:none',
+      'z-index:99999',
+      'overflow:hidden'
+    ].join(';');
+    document.body.appendChild(wrap);
 
-  let particles = [];
-  let startTime = null;
-  let animId    = null;
-  let vW = 0, vH = 0;     /* CSS-pixel viewport dimensions */
-  let colW = 90;           /* column width in CSS px        */
+    for (var i = 0; i < COUNT; i++) {
+      (function () {
+        var isCircle  = Math.random() < 0.45;
+        var size      = 5 + Math.random() * 7;          /* px */
+        var color     = COLORS[Math.floor(Math.random() * COLORS.length)];
+        var x         = Math.random() * 100;             /* vw % */
+        var delay     = Math.random() * 1.5;             /* s   */
+        var duration  = 3 + Math.random() * 2;           /* s   */
 
-  /* ── Setup ──────────────────────────────────────────────── */
-  function setup() {
-    const dpr = window.devicePixelRatio || 1;
-    vW = canvas.offsetWidth;
-    vH = canvas.offsetHeight;
-    if (!vW || !vH) return false;            /* not laid out yet */
-
-    canvas.width  = Math.round(vW * dpr);
-    canvas.height = Math.round(vH * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    /* 14 % of viewport, clamped 60–150 px — used when restoring edge columns */
-    void (colW = Math.max(60, Math.min(150, vW * 0.14)));
-    return true;
-  }
-
-  /* ── Particle factory ───────────────────────────────────── */
-  function makeParticle(side) {
-    const isLeft = side === 'left';
-    /* DEBUG: both columns in the center 50% of the screen */
-    const xMin   = vW * 0.25;
-    const xMax   = vW * 0.75;
-    void isLeft;
-    const isCirc = Math.random() < 0.45;
-
-    return {
-      x:    xMin + Math.random() * (xMax - xMin),
-      y:    -(Math.random() * 420),          /* stagger entry above top */
-      vx:   (Math.random() - 0.5) * 0.4,
-      vy:   1.5 + Math.random() * 2.5,
-      rot:  Math.random() * Math.PI * 2,
-      rotV: (Math.random() < 0.5 ? 1 : -1) * (0.02 + Math.random() * 0.05),
-      color:       COLORS[Math.floor(Math.random() * COLORS.length)],
-      baseOpacity: 0.7 + Math.random() * 0.30,
-      isCirc,
-      r:  isCirc ? 3 + Math.random() * 2.5 : 0,
-      pw: isCirc ? 0 : 6 + Math.random() * 6,
-      ph: isCirc ? 0 : 3 + Math.random() * 2,
-      xMin, xMax,
-    };
-  }
-
-  function initParticles() {
-    particles = [];
-    const perSide = vW < 768 ? 30 : 50;
-    for (let i = 0; i < perSide; i++) {
-      particles.push(makeParticle('left'));
-      particles.push(makeParticle('right'));
-    }
-  }
-
-  /* ── Draw ───────────────────────────────────────────────── */
-  function drawPiece(p, fade) {
-    ctx.save();
-    ctx.globalAlpha = p.baseOpacity * fade;
-    ctx.fillStyle   = p.color;
-    ctx.translate(p.x, p.y);
-    ctx.rotate(p.rot);
-
-    if (p.isCirc) {
-      ctx.beginPath();
-      ctx.arc(0, 0, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    } else {
-      ctx.fillRect(-p.pw / 2, -p.ph / 2, p.pw, p.ph);
-      ctx.globalAlpha = p.baseOpacity * fade * 0.45;
-      ctx.fillStyle   = '#FFF9EC';
-      ctx.fillRect(-p.pw / 2, -p.ph / 2, p.pw, p.ph * 0.30);
+        var el = document.createElement('div');
+        el.style.cssText = [
+          'position:absolute',
+          'left:'    + x    + '%',
+          'top:-12px',
+          'width:'   + size + 'px',
+          'height:'  + (isCircle ? size : size * 0.45) + 'px',
+          'background:' + color,
+          'border-radius:' + (isCircle ? '50%' : '2px'),
+          'opacity:1',
+          'animation:whe-fall ' + duration + 's ease-in ' + delay + 's both'
+        ].join(';');
+        wrap.appendChild(el);
+      }());
     }
 
-    ctx.restore();
+    /* Remove from DOM after all animations finish (~5.5 s) */
+    setTimeout(function () {
+      if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+    }, 5500);
   }
 
-  /* ── Frame loop ─────────────────────────────────────────── */
-  function frame(ts) {
-    if (!startTime) startTime = ts;
-    const elapsed = ts - startTime;
-
-    if (elapsed >= DURATION) {
-      ctx.clearRect(0, 0, vW, vH);
-      return;
-    }
-
-    const fade = elapsed < FADE_AT
-      ? 1.0
-      : 1.0 - (elapsed - FADE_AT) / (DURATION - FADE_AT);
-
-    ctx.clearRect(0, 0, vW, vH);
-
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      p.y   += p.vy;
-      p.x   += p.vx;
-      p.rot += p.rotV;
-
-      if (p.x < p.xMin) { p.x = p.xMin; p.vx =  Math.abs(p.vx) * 0.6; }
-      if (p.x > p.xMax) { p.x = p.xMax; p.vx = -Math.abs(p.vx) * 0.6; }
-
-      drawPiece(p, fade);
-    }
-
-    animId = requestAnimationFrame(frame);
+  /* Fire as soon as page is interactive */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', launch);
+  } else {
+    launch();
   }
-
-  /* ── Boot — use rAF so layout is guaranteed computed ────── */
-  function boot() {
-    if (!setup()) {
-      /* Canvas not laid out yet — retry next frame */
-      requestAnimationFrame(boot);
-      return;
-    }
-    initParticles();
-    startTime = null;
-    animId    = requestAnimationFrame(frame);
-  }
-
-  /* window.load guarantees images & layout are computed */
-  window.addEventListener('load', function () {
-    requestAnimationFrame(boot);
-  });
-
-  /* Pause when tab is hidden, resume when visible */
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) {
-      cancelAnimationFrame(animId);
-    } else if (startTime !== null) {
-      animId = requestAnimationFrame(frame);
-    }
-  });
 
 }());
