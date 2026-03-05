@@ -13,6 +13,13 @@
   background: var(--page-bg);
 }
 
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero__bg {
   position: absolute;
   inset: 0;
