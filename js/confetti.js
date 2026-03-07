@@ -11,7 +11,7 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var COLORS = ['#C6A75E', '#D4BA78', '#E8D5A0', '#B8A060', '#A8893E', '#F0E4B8'];
-  var COUNT   = 80;   /* total pieces */
+  var COUNT   = 150;  /* total pieces */
 
   /* Inject keyframe animation once */
   var style = document.createElement('style');

@@ -41,8 +41,10 @@
   background:
     linear-gradient(180deg,
       rgba(7,20,34,1)    0%,
-      rgba(7,20,34,0.92) 9%,
-      rgba(7,20,34,0)    26%
+      rgba(7,20,34,0.97) 8%,
+      rgba(7,20,34,0.88) 18%,
+      rgba(7,20,34,0.5)  32%,
+      rgba(7,20,34,0)    48%
     ),
     radial-gradient(ellipse 70% 50% at 50% 0%, rgba(198,167,94,0.10) 0%, transparent 60%),
     linear-gradient(180deg, #FFFDF9 0%, var(--page-bg) 35%, var(--section-light) 100%);
