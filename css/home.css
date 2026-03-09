@@ -152,7 +152,7 @@
   font-size: clamp(1.4rem, 3vw, 2.2rem);
   font-weight: 300;
   font-style: italic;
-  color: var(--text-on-light);
+  color: rgba(255,255,255,0.82);
   opacity: 0;
   animation: fadeInUp 0.8s ease 1.3s forwards;
   line-height: 1.5;
@@ -192,20 +192,20 @@
 
 /* ---- Light-hero overrides (home page) ---- */
 
-/* Section labels use gold-dark (#A8893E, ~4.2:1 on cream) instead of deep-gold */
+/* Section labels: bright gold on dark navy */
 .hero .section-label {
-  color: var(--gold-dark);
+  color: var(--deep-gold);
 }
 
-/* Countdown numbers: dark on light hero (overrides components.css white rule) */
+/* Countdown numbers: white on dark navy */
 .hero .countdown__number {
-  color: var(--text-on-light) !important;
-  text-shadow: none;
+  color: #ffffff !important;
+  text-shadow: 0 0 12px rgba(198,167,94,0.25);
 }
 
-/* Outline button: dark text on light hero (overrides design-system.css white rule) */
+/* Outline button: white text + gold border on dark navy */
 .hero .btn--outline {
-  color: var(--midnight-blue) !important;
+  color: #ffffff !important;
   border-color: var(--deep-gold);
 }
 
