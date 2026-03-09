@@ -304,22 +304,6 @@
 
   <script src="../js/main.js" defer></script>
   <script src="../js/components.js" defer></script>
-  <script>
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const answer = btn.nextElementSibling;
-        const isOpen = !answer.classList.contains('hidden');
-        // Close all
-        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
-        document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded','false'));
-        // Open this one if it was closed
-        if (!isOpen) {
-          answer.classList.remove('hidden');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-  </script>
+  <script src="../js/tickets.js" defer></script>
 </body>
 </html>

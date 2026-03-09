@@ -408,37 +408,6 @@
 
   <script src="../js/main.js" defer></script>
   <script src="../js/components.js" defer></script>
-  <script>
-    const dayTabs = document.querySelectorAll('.day-tab');
-    const day1 = document.getElementById('day1Schedule');
-    const day2 = document.getElementById('day2Schedule');
-    dayTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const day = tab.dataset.day;
-        dayTabs.forEach(t => {
-          t.classList.remove('day-tab--active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('day-tab--active');
-        tab.setAttribute('aria-selected', 'true');
-        if (day === '1') { day1.classList.remove('hidden'); day2.classList.add('hidden'); }
-        else             { day2.classList.remove('hidden'); day1.classList.add('hidden'); }
-        // Trigger reveals on newly visible items
-        const panel = day === '1' ? day1 : day2;
-        panel.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-          setTimeout(() => el.classList.add('visible'), 80);
-        });
-      });
-      tab.addEventListener('keydown', (e) => {
-        const tabList = [...dayTabs];
-        const idx = tabList.indexOf(tab);
-        if (e.key === 'ArrowRight' && idx < tabList.length - 1) {
-          tabList[idx + 1].focus(); tabList[idx + 1].click();
-        } else if (e.key === 'ArrowLeft' && idx > 0) {
-          tabList[idx - 1].focus(); tabList[idx - 1].click();
-        }
-      });
-    });
-  </script>
+  <script src="../js/schedule.js" defer></script>
 </body>
 </html>

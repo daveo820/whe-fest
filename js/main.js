@@ -116,8 +116,11 @@
     const emailForm = document.querySelector('.email-signup__form');
     if (!emailForm) return;
 
+    let emailSubmitted = false;
+
     emailForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (emailSubmitted) return;
       const input = emailForm.querySelector('input[type="email"]');
       const btn   = emailForm.querySelector('button[type="submit"]');
       const email = input.value.trim();
@@ -145,6 +148,7 @@
       }
 
       // Loading state
+      emailSubmitted  = true;
       btn.textContent = 'Joining\u2026';
       btn.disabled    = true;
 
@@ -153,7 +157,7 @@
         btn.textContent = 'You\'re In! ✦';
         input.disabled  = true;
         btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold);';
-        // TODO: fetch('/wp-json/newsletter/subscribe', { method:'POST', body: JSON.stringify({email}) });
+        // TODO: fetch('/api/newsletter/subscribe', { method:'POST', body: JSON.stringify({email}) });
       }, 800);
     });
   });
@@ -164,11 +168,77 @@
     const sponsorForm = document.querySelector('.sponsor-form');
     if (!sponsorForm) return;
 
+    // Rate limit: max 3 submissions per session
+    let submitCount = 0;
+    const MAX_SUBMITS = 3;
+
+    function showFieldError(field, msg) {
+      let err = field.parentElement.querySelector('.field-error');
+      if (!err) {
+        err = document.createElement('p');
+        err.className = 'field-error';
+        err.style.cssText = 'color:#e57373;font-size:var(--text-xs);margin-top:0.3rem;letter-spacing:0.05em;';
+        field.insertAdjacentElement('afterend', err);
+      }
+      err.textContent = msg;
+      field.style.borderColor = '#e57373';
+      field.addEventListener('input', () => {
+        field.style.borderColor = '';
+        if (err.parentNode) err.remove();
+      }, { once: true });
+    }
+
     sponsorForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = sponsorForm.querySelector('button[type="submit"]');
+
+      // Honeypot check — bots fill the hidden field
+      const honeypot = sponsorForm.querySelector('input[name="website_url"]');
+      if (honeypot && honeypot.value.trim() !== '') return;
+
+      // Rate limiting
+      if (submitCount >= MAX_SUBMITS) return;
+
+      const orgName     = sponsorForm.querySelector('#orgName');
+      const contactName = sponsorForm.querySelector('#contactName');
+      const emailInput  = sponsorForm.querySelector('#email');
+      const message     = sponsorForm.querySelector('#message');
+      const btn         = sponsorForm.querySelector('button[type="submit"]');
+
+      // Clear previous errors
+      sponsorForm.querySelectorAll('.field-error').forEach(el => el.remove());
+      [orgName, contactName, emailInput, message].forEach(f => { if (f) f.style.borderColor = ''; });
+
+      let valid = true;
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // Strip characters that have no place in plain-text names/org names
+      const dangerRe = /<|>|javascript:|data:/i;
+
+      if (!orgName.value.trim()) {
+        showFieldError(orgName, 'Organization name is required.'); valid = false;
+      } else if (orgName.value.trim().length > 120 || dangerRe.test(orgName.value)) {
+        showFieldError(orgName, 'Please enter a valid organization name.'); valid = false;
+      }
+
+      if (!contactName.value.trim()) {
+        showFieldError(contactName, 'Contact name is required.'); valid = false;
+      } else if (contactName.value.trim().length > 80 || dangerRe.test(contactName.value)) {
+        showFieldError(contactName, 'Please enter a valid name.'); valid = false;
+      }
+
+      if (!emailRe.test(emailInput.value.trim())) {
+        showFieldError(emailInput, 'Please enter a valid email address.'); valid = false;
+      }
+
+      if (message.value.trim().length > 1200) {
+        showFieldError(message, 'Message must be 1200 characters or fewer.'); valid = false;
+      }
+
+      if (!valid) return;
+
+      submitCount++;
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
+
       setTimeout(() => {
         btn.textContent = 'Inquiry Sent! We\'ll be in touch.';
         btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold); width:100%;';

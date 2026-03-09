@@ -213,28 +213,6 @@
 
   <script src="../js/main.js" defer></script>
   <script src="../js/components.js" defer></script>
-  <script>
-    // Track filter logic
-    const trackBtns = document.querySelectorAll('.track-btn');
-    const speakerCards = document.querySelectorAll('.speaker-full-card');
-    trackBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const track = btn.dataset.track;
-        trackBtns.forEach(b => {
-          b.classList.remove('track-btn--active');
-          b.setAttribute('aria-pressed', 'false');
-        });
-        btn.classList.add('track-btn--active');
-        btn.setAttribute('aria-pressed', 'true');
-        speakerCards.forEach(card => {
-          if (track === 'all' || card.dataset.track === track) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
+  <script src="../js/speakers.js" defer></script>
 </body>
 </html>
