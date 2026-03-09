@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--page-bg);
+  background: #071422;
 }
 
 .hero__canvas {
@@ -37,17 +37,9 @@
 .hero__bg {
   position: absolute;
   inset: 0;
-  /* Dark navy band at top (nav area) → fades to warm cream below */
   background:
-    linear-gradient(180deg,
-      rgba(7,20,34,1)    0%,
-      rgba(7,20,34,0.97) 8%,
-      rgba(7,20,34,0.88) 18%,
-      rgba(7,20,34,0.5)  32%,
-      rgba(7,20,34,0)    48%
-    ),
     radial-gradient(ellipse 70% 50% at 50% 0%, rgba(198,167,94,0.10) 0%, transparent 60%),
-    linear-gradient(180deg, #FFFDF9 0%, var(--page-bg) 35%, var(--section-light) 100%);
+    linear-gradient(180deg, #071422 0%, #0B1C2D 100%);
 }
 
 
