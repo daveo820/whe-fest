@@ -1,9 +1,12 @@
 (function () {
   'use strict';
   var dayTabs = document.querySelectorAll('.day-tab');
-  var day1    = document.getElementById('day1Schedule');
-  var day2    = document.getElementById('day2Schedule');
-  if (!dayTabs.length || !day1 || !day2) return;
+  var panels = [
+    document.getElementById('day1Schedule'),
+    document.getElementById('day2Schedule'),
+    document.getElementById('day3Schedule')
+  ].filter(Boolean);
+  if (!dayTabs.length || !panels.length) return;
 
   dayTabs.forEach(function (tab) {
     tab.addEventListener('click', function () {
@@ -14,12 +17,16 @@
       });
       tab.classList.add('day-tab--active');
       tab.setAttribute('aria-selected', 'true');
-      if (day === '1') { day1.classList.remove('hidden'); day2.classList.add('hidden'); }
-      else             { day2.classList.remove('hidden'); day1.classList.add('hidden'); }
-      var panel = day === '1' ? day1 : day2;
-      panel.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
-        setTimeout(function () { el.classList.add('visible'); }, 80);
-      });
+
+      // Hide all panels, show selected
+      panels.forEach(function (p) { p.classList.add('hidden'); });
+      var activePanel = document.getElementById('day' + day + 'Schedule');
+      if (activePanel) {
+        activePanel.classList.remove('hidden');
+        activePanel.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+          setTimeout(function () { el.classList.add('visible'); }, 80);
+        });
+      }
     });
 
     tab.addEventListener('keydown', function (e) {

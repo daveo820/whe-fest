@@ -63,10 +63,13 @@
   // ── Schedule tabs (homepage preview) ─────────────────────
   document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.schedule-tab');
-    const day1 = document.getElementById('scheduleDay1');
-    const day2 = document.getElementById('scheduleDay2');
+    const panels = [
+      document.getElementById('scheduleDay1'),
+      document.getElementById('scheduleDay2'),
+      document.getElementById('scheduleDay3')
+    ].filter(Boolean);
 
-    if (!tabs.length || !day1 || !day2) return;
+    if (!tabs.length || !panels.length) return;
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
@@ -80,19 +83,15 @@
         tab.classList.add('schedule-tab--active');
         tab.setAttribute('aria-selected', 'true');
 
-        if (day === '1') {
-          day1.classList.remove('hidden');
-          day2.classList.add('hidden');
-        } else {
-          day2.classList.remove('hidden');
-          day1.classList.add('hidden');
+        // Hide all panels, show selected
+        panels.forEach(p => p.classList.add('hidden'));
+        const activePanel = document.getElementById('scheduleDay' + day);
+        if (activePanel) {
+          activePanel.classList.remove('hidden');
+          activePanel.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+            setTimeout(() => el.classList.add('visible'), 80);
+          });
         }
-
-        // Trigger reveals on newly shown items
-        const section = day === '1' ? day1 : day2;
-        section.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-          setTimeout(() => el.classList.add('visible'), 80);
-        });
       });
 
       // Keyboard: left/right arrow navigation between tabs
