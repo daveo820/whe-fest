@@ -27,6 +27,46 @@
   <link rel="stylesheet" href="../css/design-system.css" />
   <link rel="stylesheet" href="../css/inner-pages.css" />
   <link rel="stylesheet" href="../css/components.css" />
+  <style>
+    .speaker-topic-group {
+      margin-bottom: var(--space-3xl);
+      padding-bottom: var(--space-2xl);
+      border-bottom: 1px solid rgba(198,167,94,0.12);
+    }
+    .speaker-topic-group:last-child { border-bottom: none; margin-bottom: 0; }
+    .speaker-topic-header { margin-bottom: var(--space-xl); }
+    .speaker-topic-header h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+      margin: var(--space-sm) 0 var(--space-xs);
+    }
+    .speaker-topic-org { font-size: var(--text-sm); color: var(--gray-warm); }
+    .speaker-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: var(--space-lg);
+    }
+    .speaker-mini-card { text-align: center; }
+    .speaker-mini-photo {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto var(--space-sm);
+      border: 2px solid rgba(198,167,94,0.3);
+      background: var(--blue-deep);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .speaker-mini-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .speaker-mini-initials { font-family: var(--font-heading); font-size: 1.4rem; color: var(--deep-gold); opacity: 0.65; }
+    .speaker-mini-name { font-size: var(--text-sm); font-weight: 600; color: var(--soft-white, #F5F0E8); margin-bottom: 0.2em; line-height: 1.3; }
+    .speaker-mini-role { font-size: 0.73rem; color: var(--gray-warm); line-height: 1.4; }
+    .speaker-mini-badge {
+      display: inline-block; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--deep-gold); background: rgba(198,167,94,0.1);
+      border-radius: 100px; padding: 0.2em 0.7em; margin-top: 0.35em;
+    }
+  </style>
 </head>
 <body>
 
@@ -164,7 +204,7 @@
     </div>
   </section>
 
-  <!-- Individual Speakers -->
+  <!-- Individual Speakers by Panel -->
   <section class="section section--gradient">
     <div class="container">
       <div class="text-center mb-xl">
@@ -176,89 +216,213 @@
         </p>
       </div>
 
-      <div class="track-filters reveal reveal-delay-2" role="group" aria-label="Filter speakers by track">
-        <button class="track-btn track-btn--active" data-track="all" aria-pressed="true">All Tracks</button>
-        <button class="track-btn" data-track="health" aria-pressed="false">Health</button>
-        <button class="track-btn" data-track="policy" aria-pressed="false">Policy</button>
-        <button class="track-btn" data-track="empowerment" aria-pressed="false">Empowerment</button>
+      <!-- EMF/EMR Panel -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--health">Health &middot; Friday 11:00 AM</span>
+          <h3>EMF/EMR &amp; Data Centers Panel</h3>
+          <p class="speaker-topic-org">Children's Health Defense &amp; Environmental Health Trust</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/theodora-scarato.jpg" alt="Theodora Scarato" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Theodora Scarato</div>
+            <div class="speaker-mini-role">Environmental Health Trust</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">CHD</span></div>
+            <div class="speaker-mini-name">Additional Panelists</div>
+            <div class="speaker-mini-role">Children's Health Defense</div>
+            <span class="speaker-mini-badge">TBD</span>
+          </div>
+        </div>
       </div>
 
-      <div class="speakers-grid" id="speakersGrid">
-
-        <!-- EMF/EMR Panel -->
-        <div class="speaker-full-card reveal" data-track="health">
-          <div class="speaker-img-placeholder"><span>EHT</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--health">Health · Friday 11 AM</span>
-            <h3>EMF/EMR &amp; Data Centers Panel</h3>
-            <p class="speaker-title">Children's Health Defense &amp; Environmental Health Trust</p>
-            <p class="speaker-bio-short">Featuring Theodora Scarento (Environmental Health Trust). Experts, advocates, and lawyers who have successfully fought for EMR safety share solutions for protecting families and communities.</p>
+      <!-- Pesticides & Toxins Panel -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--health">Health &middot; Friday 1:00 PM</span>
+          <h3>Pesticides &amp; Toxins in Food and Water</h3>
+          <p class="speaker-topic-org">Moms Across America &middot; MC: Zen Honeycutt</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/zen-honeycutt.jpg" alt="Zen Honeycutt" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Zen Honeycutt</div>
+            <div class="speaker-mini-role">MC &middot; Moms Across America</div>
+            <span class="speaker-mini-badge">Moderator</span>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/vani-hari.png" alt="Vani Hari" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Vani Hari</div>
+            <div class="speaker-mini-role">Food Activist &amp; Author</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">KR</span></div>
+            <div class="speaker-mini-name">Kelly Ryerson</div>
+            <div class="speaker-mini-role">Glyphosate Health Advocate</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">BL</span></div>
+            <div class="speaker-mini-name">Beth Lambert</div>
+            <div class="speaker-mini-role">Founder, Epidemic Answers</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">SS</span></div>
+            <div class="speaker-mini-name">Dr. Shawna Swan</div>
+            <div class="speaker-mini-role">Reproductive Epidemiologist</div>
           </div>
         </div>
+      </div>
 
-        <!-- Pesticides Panel -->
-        <div class="speaker-full-card reveal reveal-delay-1" data-track="health">
-          <div class="speaker-img-placeholder"><span>MAA</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--health">Health · Friday 1 PM</span>
-            <h3>Pesticides &amp; Toxins Panel</h3>
-            <p class="speaker-title">Moms Across America · MC: Zen Honeycutt</p>
-            <p class="speaker-bio-short">Panelists: Kelly Ryerson · Vani Hari · Beth Lambert · Dr. Shawna Swan. Leading experts on how pesticides and environmental toxins affect families — and the practical steps to protect your food and water.</p>
+      <!-- Nutrition & School Lunch Panel -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--health">Health &middot; Friday 2:00 PM</span>
+          <h3>Nutrition Solutions &amp; School Lunch Reform</h3>
+          <p class="speaker-topic-org">Weston A. Price Foundation &middot; MC: Hilda</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">H</span></div>
+            <div class="speaker-mini-name">Hilda</div>
+            <div class="speaker-mini-role">MC &middot; Weston A. Price Foundation</div>
+            <span class="speaker-mini-badge">Moderator</span>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/sally-fallon.jpg" alt="Sally Fallon Morell" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Sally Fallon Morell</div>
+            <div class="speaker-mini-role">President, Weston A. Price Foundation</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/nina-teicholz.jpg" alt="Nina Teicholz" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Nina Teicholz</div>
+            <div class="speaker-mini-role">Author, The Big Fat Surprise</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">NM</span></div>
+            <div class="speaker-mini-name">Nancy McBride</div>
+            <div class="speaker-mini-role">Nutrition Advocate</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">HB</span></div>
+            <div class="speaker-mini-name">Hilary Boynton</div>
+            <div class="speaker-mini-role">School of Lunch</div>
           </div>
         </div>
+      </div>
 
-        <!-- Nutrition Panel -->
-        <div class="speaker-full-card reveal reveal-delay-2" data-track="health">
-          <div class="speaker-img-placeholder"><span>WAPF</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--health">Health · Friday 2 PM</span>
-            <h3>Nutrition &amp; School Lunch Panel</h3>
-            <p class="speaker-title">Weston A. Price Foundation · MC: Hilda</p>
-            <p class="speaker-bio-short">Panelists: Nancy McBride · Sally Fallon · Hilary Boynton · Nina Teicholz. Nutrition experts and school lunch advocates presenting real solutions — from traditional food wisdom to national policy reform.</p>
+      <!-- Vaccines & Health Freedom Panel -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--policy">Policy &middot; Friday 3:15 PM</span>
+          <h3>Vaccines &amp; Health Freedom Advocacy</h3>
+          <p class="speaker-topic-org">Stand for Health Freedom &middot; MC: Leah Wilson</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">LW</span></div>
+            <div class="speaker-mini-name">Leah Wilson</div>
+            <div class="speaker-mini-role">MC &middot; Stand for Health Freedom</div>
+            <span class="speaker-mini-badge">Moderator</span>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/leslie-manookian.jpg" alt="Leslie Manookian" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Leslie Manookian</div>
+            <div class="speaker-mini-role">Health Freedom Defense Fund</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/sherry-tenpenny.jpg" alt="Dr. Sherry Tenpenny" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Dr. Sherry Tenpenny</div>
+            <div class="speaker-mini-role">NVIC Advisory Board</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/meryl-nass.jpg" alt="Dr. Meryl Nass" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Dr. Meryl Nass</div>
+            <div class="speaker-mini-role">Physician &amp; Biodefense Expert</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">CH</span></div>
+            <div class="speaker-mini-name">Christine Hildebrand</div>
+            <div class="speaker-mini-role">A Voice for Choice</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">AB</span></div>
+            <div class="speaker-mini-name">Amy Bohn</div>
+            <div class="speaker-mini-role">PERK</div>
           </div>
         </div>
+      </div>
 
-        <!-- Health Freedom Panel -->
-        <div class="speaker-full-card reveal" data-track="policy">
-          <div class="speaker-img-placeholder"><span>SHF</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--policy">Policy · Friday 3:15 PM</span>
-            <h3>Vaccines &amp; Health Freedom Panel</h3>
-            <p class="speaker-title">Stand for Health Freedom · MC: Leah Wilson</p>
-            <p class="speaker-bio-short">Panelists: Leslie Manookian (HFDF) · Sherry Tenpenny (NVIC) · Meryl Nass · Christine Hildebrand (A Voice for Choice) · Amy Bohn (PERK). Advocates who have won medical freedom victories share their legislative strategies.</p>
+      <!-- International Natural Health Panel -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--empowerment">Empowerment &middot; Friday 4:15 PM</span>
+          <h3>International Natural Health Solutions</h3>
+          <p class="speaker-topic-org">Global Wellness Forum &middot; MC: Aimee Villella</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo">
+              <img src="../assets/images/speakers/aimee-villella.jpg" alt="Aimee Villella" loading="lazy" />
+            </div>
+            <div class="speaker-mini-name">Aimee Villella</div>
+            <div class="speaker-mini-role">MC &middot; Global Wellness Forum</div>
+            <span class="speaker-mini-badge">Moderator</span>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">BO</span></div>
+            <div class="speaker-mini-name">Barbara O'Neill</div>
+            <div class="speaker-mini-role">Natural Health Educator</div>
+          </div>
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">INT</span></div>
+            <div class="speaker-mini-name">International Speakers</div>
+            <div class="speaker-mini-role">France &middot; Denmark &middot; USA</div>
+            <span class="speaker-mini-badge">TBD</span>
           </div>
         </div>
+      </div>
 
-        <!-- International Health Panel -->
-        <div class="speaker-full-card reveal reveal-delay-1" data-track="empowerment">
-          <div class="speaker-img-placeholder"><span>GWF</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--empowerment">Empowerment · Friday 4:15 PM</span>
-            <h3>International Natural Health Panel</h3>
-            <p class="speaker-title">Global Wellness Forum · MC: Aimee Vilella</p>
-            <p class="speaker-bio-short">Featuring Barbara O'Neill and international guest speakers from the USA, France, and Denmark — sharing winning natural health solutions and inspiration from countries that have successfully protected community health.</p>
+      <!-- Saturday Workshop: Back to Basics -->
+      <div class="speaker-topic-group reveal">
+        <div class="speaker-topic-header">
+          <span class="track-tag track-tag--empowerment">Workshop &middot; Saturday</span>
+          <h3>Back to Basics Family Care</h3>
+          <p class="speaker-topic-org">Grandma Academy</p>
+        </div>
+        <div class="speaker-mini-grid">
+          <div class="speaker-mini-card">
+            <div class="speaker-mini-photo"><span class="speaker-mini-initials">HL</span></div>
+            <div class="speaker-mini-name">Hava Levi</div>
+            <div class="speaker-mini-role">Founder, Grandma Academy</div>
           </div>
         </div>
+      </div>
 
-        <!-- Workshop Track 5 -->
-        <div class="speaker-full-card reveal reveal-delay-2" data-track="empowerment">
-          <div class="speaker-img-placeholder"><span>GA</span></div>
-          <div class="speaker-full-card__info">
-            <span class="track-tag track-tag--empowerment">Workshop · Saturday</span>
-            <h3>Back to Basics Family Care</h3>
-            <p class="speaker-title">Hava Levi — Grandma Academy</p>
-            <p class="speaker-bio-short">Saturday workshop track led by Hava Levi of the Grandma Academy — hands-on advocacy and practical family care strategies rooted in traditional wisdom. Participants work through concrete steps for community activism and legislative change.</p>
-          </div>
-        </div>
-
-      </div><!-- /speakers-grid -->
-
-      <div class="speakers-cta text-center reveal mt-xl">
-        <p class="speakers-cta__text">Additional speakers to be announced (TBD). Join the email list to be the first to know.</p>
+      <div class="speakers-cta text-center reveal mt-xl" style="padding-top: var(--space-xl);">
+        <p class="speakers-cta__text">Additional speakers to be announced. Join the email list to be the first to know.</p>
         <a href="../index.html#signup" class="btn btn--glow mt-md">Get Notified</a>
       </div>
     </div>
   </section>
+
 
   </main>
 
