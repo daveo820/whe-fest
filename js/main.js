@@ -151,13 +151,36 @@
       btn.textContent = 'Joining\u2026';
       btn.disabled    = true;
 
-      // Simulate async — replace setTimeout with actual API call
-      setTimeout(() => {
-        btn.textContent = 'You\'re In! ✦';
-        input.disabled  = true;
-        btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold);';
-        // TODO: fetch('/api/newsletter/subscribe', { method:'POST', body: JSON.stringify({email}) });
-      }, 800);
+      fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            btn.textContent = 'You\'re In! ✦';
+            input.disabled  = true;
+            btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold);';
+          } else {
+            emailSubmitted  = false;
+            btn.textContent = 'Join the List';
+            btn.disabled    = false;
+            let errEl = emailForm.querySelector('.form-error');
+            if (!errEl) {
+              errEl = document.createElement('p');
+              errEl.className = 'form-error';
+              errEl.style.cssText = 'color:#e57373; font-size:var(--text-xs); margin-top:0.4rem; letter-spacing:0.05em;';
+              input.insertAdjacentElement('afterend', errEl);
+            }
+            errEl.textContent = data.error || 'Something went wrong. Please try again.';
+          }
+        })
+        .catch(() => {
+          emailSubmitted  = false;
+          btn.textContent = 'Join the List';
+          btn.disabled    = false;
+        });
     });
   });
 
@@ -238,10 +261,33 @@
       btn.textContent = 'Sending\u2026';
       btn.disabled = true;
 
-      setTimeout(() => {
-        btn.textContent = 'Inquiry Sent! We\'ll be in touch.';
-        btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold); width:100%;';
-      }, 800);
+      fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orgName:     orgName.value.trim(),
+          contactName: contactName.value.trim(),
+          email:       emailInput.value.trim(),
+          message:     message.value.trim(),
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            btn.textContent = 'Inquiry Sent! We\'ll be in touch.';
+            btn.style.cssText = 'background:transparent; border:1px solid var(--deep-gold); color:var(--deep-gold); width:100%;';
+          } else {
+            submitCount--;
+            btn.textContent = 'Send Inquiry';
+            btn.disabled = false;
+            showFieldError(emailInput, data.error || 'Something went wrong. Please try again.');
+          }
+        })
+        .catch(() => {
+          submitCount--;
+          btn.textContent = 'Send Inquiry';
+          btn.disabled = false;
+        });
     });
   });
 
