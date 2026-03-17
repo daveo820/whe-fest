@@ -292,7 +292,7 @@
 
     // Countdown — fires on homepage hero and tickets page
     // Target date: placeholder — replace with actual event date
-    const EVENT_DATE = 'October 15, 2026 09:00:00';
+    const EVENT_DATE = 'September 10, 2026 09:00:00';
     initCountdown('heroCountdown', EVENT_DATE);
     initCountdown('ticketsCountdown', EVENT_DATE);
   });
