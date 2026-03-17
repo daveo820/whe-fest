@@ -314,7 +314,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  align-items: start;
+  align-items: stretch;
 }
 
 .speaker-card {
@@ -715,6 +715,9 @@
 .venue-showcase__img-frame {
   width: 100%;
   display: block;
+  aspect-ratio: 14 / 9;
+  overflow: hidden;
+  background: var(--blue-deep);
 }
 
 .venue-showcase__details {
